@@ -1,0 +1,1904 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wisdom Traditions: A Journey to Life Fundamentals</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #3a6ea5;
+            --secondary-color: #6ab04c;
+            --accent-color: #c7ecee;
+            --text-color: #333;
+            --light-text: #f5f5f5;
+            --bg-color: #f9f9f9;
+            --card-bg: #ffffff;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            overflow-x: hidden;
+        }
+
+        /* Header and Navigation */
+        header {
+            background-color: var(--primary-color);
+            color: var(--light-text);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: var(--shadow);
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo i {
+            color: var(--secondary-color);
+        }
+
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--light-text);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        nav ul li a {
+            color: var(--light-text);
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        nav ul li a:hover, nav ul li a.active {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Introduction Section */
+        .intro {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--light-text);
+            padding: 4rem 20px;
+            text-align: center;
+        }
+
+        .intro-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .intro h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .intro p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        /* Main Content */
+        .main-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .tab-container {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            margin-bottom: 30px;
+            overflow: hidden;
+        }
+
+        .tab-nav {
+            display: flex;
+            flex-wrap: wrap;
+            background-color: rgba(58, 110, 165, 0.1);
+            border-bottom: 1px solid rgba(58, 110, 165, 0.2);
+        }
+
+        .tab-nav button {
+            background: none;
+            border: none;
+            padding: 1rem 1.5rem;
+            cursor: pointer;
+            font-size: 1rem;
+            color: var(--primary-color);
+            transition: var(--transition);
+            position: relative;
+            flex: 1 1 auto;
+            min-width: 120px;
+            text-align: center;
+        }
+
+        .tab-nav button:hover {
+            background-color: rgba(58, 110, 165, 0.1);
+        }
+
+        .tab-nav button.active {
+            background-color: var(--primary-color);
+            color: var(--light-text);
+        }
+
+        .tab-content {
+            display: none;
+            padding: 2rem;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Tradition Content Structure */
+        .tradition-section {
+            margin-bottom: 2rem;
+        }
+
+        .tradition-section h2 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .tradition-section h2 i {
+            color: var(--secondary-color);
+        }
+
+        .principles, .exercises, .reflection {
+            background-color: rgba(58, 110, 165, 0.05);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+        }
+
+        .principles ul, .exercises ol {
+            margin-left: 20px;
+            margin-bottom: 1rem;
+        }
+
+        .principles li, .exercises li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Interactive Elements */
+        .interactive-container {
+            background-color: var(--accent-color);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            text-align: center;
+        }
+
+        .breathing-timer {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .circle {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background-color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .circle-inner {
+            width: 90%;
+            height: 90%;
+            border-radius: 50%;
+            background-color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        .breathing-btn {
+            background-color: var(--secondary-color);
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .breathing-btn:hover {
+            background-color: #5a9b3e;
+        }
+
+        .position-guide {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .position-card {
+            background-color: white;
+            border: 1px solid rgba(58, 110, 165, 0.2);
+            border-radius: 8px;
+            padding: 1rem;
+            text-align: center;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .position-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .position-card i {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        /* Connection Map */
+        .connection-map {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow);
+        }
+
+        .connection-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .connection-card {
+            background-color: rgba(58, 110, 165, 0.05);
+            border: 1px solid rgba(58, 110, 165, 0.2);
+            border-radius: 8px;
+            padding: 1.5rem;
+            transition: var(--transition);
+        }
+
+        .connection-card:hover {
+            background-color: rgba(58, 110, 165, 0.1);
+        }
+
+        /* Progress Tracker */
+        .progress-tracker {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow);
+        }
+
+        .progress-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            background-color: rgba(58, 110, 165, 0.05);
+            border-radius: 8px;
+        }
+
+        .progress-bar {
+            flex-grow: 1;
+            height: 10px;
+            background-color: rgba(58, 110, 165, 0.2);
+            border-radius: 5px;
+            margin: 0 1rem;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background-color: var(--secondary-color);
+            border-radius: 5px;
+            transition: width 0.5s ease;
+        }
+
+        /* Daily Practice Generator */
+        .daily-practice {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: var(--shadow);
+        }
+
+        .generate-btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
+            transition: var(--transition);
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .generate-btn:hover {
+            background-color: #2d5a8c;
+        }
+
+        .practice-result {
+            background-color: rgba(58, 110, 165, 0.05);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+            display: none;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary-color);
+            color: var(--light-text);
+            text-align: center;
+            padding: 2rem 20px;
+            margin-top: 3rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-toggle {
+                display: block;
+            }
+
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: var(--primary-color);
+                flex-direction: column;
+            }
+
+            nav ul.active {
+                display: flex;
+            }
+
+            .tab-nav button {
+                padding: 0.8rem;
+                font-size: 0.9rem;
+            }
+
+            .intro h1 {
+                font-size: 2rem;
+            }
+
+            .tab-content {
+                padding: 1rem;
+            }
+
+            .connection-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Animations */
+        .energy-flow {
+            position: relative;
+            overflow: hidden;
+            padding: 2rem 0;
+        }
+
+        .energy-flow::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(106, 176, 76, 0.3), transparent);
+            animation: energyFlow 3s infinite;
+        }
+
+        @keyframes energyFlow {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        /* Accessibility */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
+        /* Focus styles for accessibility */
+        button:focus, a:focus {
+            outline: 3px solid var(--secondary-color);
+            outline-offset: 2px;
+        }
+
+        /* Skip to content link */
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: var(--primary-color);
+            color: white;
+            padding: 8px;
+            z-index: 100;
+            transition: top 0.3s;
+        }
+
+        .skip-link:focus {
+            top: 0;
+        }
+    </style>
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <i class="fas fa-om"></i>
+                Wisdom Traditions
+            </div>
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+                <i class="fas fa-bars"></i>
+            </button>
+            <nav>
+                <ul id="navMenu">
+                    <li><a href="#yoga-breathing" class="nav-link">Yoga Breathing</a></li>
+                    <li><a href="#ayurveda" class="nav-link">Ayurveda</a></li>
+                    <li><a href="#taichi" class="nav-link">Taichi</a></li>
+                    <li><a href="#fengshui" class="nav-link">Fengshui</a></li>
+                    <li><a href="#zen" class="nav-link">Zen</a></li>
+                    <li><a href="#detachment" class="nav-link">Detachment</a></li>
+                    <li><a href="#stoicism" class="nav-link">Stoicism</a></li>
+                    <li><a href="#taoism" class="nav-link">Taoism</a></li>
+                    <li><a href="#tibetan-chi" class="nav-link">Tibetan Chi</a></li>
+                    <li><a href="#chakras" class="nav-link">Chakras</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="intro" id="intro">
+        <div class="intro-container">
+            <h1>Wisdom Traditions: A Journey to Life Fundamentals</h1>
+            <p>
+                Ancient spiritual and philosophical traditions offer profound wisdom that transcends cultural boundaries and time. 
+                These practices, developed over thousands of years, provide practical tools for navigating the complexities of modern life. 
+                Whether through mindful breathing, energy cultivation, or philosophical reflection, these traditions share a common thread: 
+                the pursuit of inner peace, balance, and understanding.
+            </p>
+            <p>
+                This journey explores the universal principles that connect diverse wisdom traditions, showing how they complement each other 
+                and offer a holistic approach to well-being. By integrating these practices into your daily life, you can cultivate resilience, 
+                clarity, and harmony in an increasingly complex world.
+            </p>
+        </div>
+    </section>
+
+    <main class="main-container" id="main-content">
+        <div class="tab-container">
+            <div class="tab-nav">
+                <button class="tab-btn active" data-tab="yoga-breathing">
+                    <i class="fas fa-wind"></i> Yoga Breathing
+                </button>
+                <button class="tab-btn" data-tab="ayurveda">
+                    <i class="fas fa-leaf"></i> Ayurveda
+                </button>
+                <button class="tab-btn" data-tab="taichi">
+                    <i class="fas fa-yin-yang"></i> Taichi
+                </button>
+                <button class="tab-btn" data-tab="fengshui">
+                    <i class="fas fa-home"></i> Fengshui
+                </button>
+                <button class="tab-btn" data-tab="zen">
+                    <i class="fas fa-spa"></i> Zen
+                </button>
+                <button class="tab-btn" data-tab="detachment">
+                    <i class="fas fa-dove"></i> Detachment
+                </button>
+                <button class="tab-btn" data-tab="stoicism">
+                    <i class="fas fa-balance-scale"></i> Stoicism
+                </button>
+                <button class="tab-btn" data-tab="taoism">
+                    <i class="fas fa-water"></i> Taoism
+                </button>
+                <button class="tab-btn" data-tab="tibetan-chi">
+                    <i class="fas fa-mountain"></i> Tibetan Chi
+                </button>
+                <button class="tab-btn" data-tab="chakras">
+                    <i class="fas fa-circle-notch"></i> Chakras
+                </button>
+            </div>
+
+            <!-- Yoga Breathing Tab -->
+            <div class="tab-content active" id="yoga-breathing">
+                <div class="tradition-section">
+                    <h2><i class="fas fa-book"></i> Core Principles and Philosophy</h2>
+                    <div class="principles">
+                        <p>Yoga breathing, or Pranayama, is the practice of controlling the breath to influence the mind and body. It is based on the principle that breath is the life force (prana) that connects the physical and subtle bodies.</p>
+                        <ul>
+                            <li>Prana is the vital energy that sustains all life</li>
+                            <li>Control of breath leads to control of mind</li>
+                            <li>Balance of inhalation and exhalation creates harmony</li>
+                            <li>Regular practice purifies the nervous system</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="tradition-section">
+                    <h2><i class="fas fa-hands"></i> Practical Exercises</h2>
+                    <div class="exercises">
+                        <h3>Diaphragmatic Breathing</h3>
+                        <ol>
+                            <li>Sit comfortably with a straight spine</li>
+                            <li>Place one hand on your chest, one on your belly</li>
+                            <li>Inhale slowly through your nose, allowing your belly to expand</li>
+                            <li>Exhale slowly through your nose, feeling your belly contract</li>
+                            <li>Practice for 5-10 minutes daily</li>
+                        </ol>
+                        
+                        <h3>Alternate Nostril Breathing (Nadi Shodhana)</h3>
+                        <ol>
+                            <li>Sit comfortably and close your right nostril with your thumb</li>
+                            <li>Inhale through your left nostril</li>
+                            <li>Close your left nostril with your ring finger</li>
+                            <li>Exhale through your right nostril</li>
+                            <li>Inhale through the right nostril</li>
+                            <li>Close the right nostril and exhale through the left</li>
+                            <li>Repeat for 5-10 rounds</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div class="tradition-section">
+                    <h2><i class="fas fa-clock"></i> Interactive Breathing Timer</h2>
+                    <div class="interactive-container">
+                        <div class="breathing-timer">
+                            <div class="circle">
+                                <div class="circle-inner">
+                                    <span id="breathPhase">Inhale</span>
+                                    <span id="breathCount">4</span>
+                                </div>
+                            </div>
+                            <button class="breathing-btn" id="startBreathing">Start Breathing Exercise</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tradition-section">
+                    <h2><i class="fas fa-question-circle"></i> Personal Reflection</h2>
+                    <div class="reflection">
+                        <ul>
+                            <li>How does your breathing change when you're stressed versus relaxed?</li>
+                            <li>What sensations do you notice in your body during mindful breathing?</li>
+                            <li>How can you incorporate conscious breathing into your daily routine?</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Ayurveda Tab -->
+            <div class="tab-content" id="ayurveda">
+                <div class="tradition-section">
+                    <h2><i class="fas fa-book"></i> Core Principles and Philosophy</h2>
+                    <div class="principles">
+                        <p>Ayurveda, the "science of life," is an ancient Indian holistic healing system that balances mind, body, and spirit through diet, lifestyle, and herbal remedies.</p>
+                        <ul>
+                            <li>Everything in the universe is composed of five elements: earth, water, fire, air, and ether</li>
+                            <li>These elements combine to form three doshas: Vata, Pitta, and Kapha</li>
+                            <li>Health is the balance of these doshas according to one's unique constitution</li>
+                            <li>Disease arises from imbalance in the doshas</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="tradition-section">
+                    <h2><i class="fas fa-hands"></i> Practical Exercises</h2>
+                    <div class="exercises">
+                        <h3>Determine Your Dosha</h3>
+                        <ol>
+                            <li>Observe your physical characteristics: body type, weight, hair, eyes</li>
+                            <li>Note your mental and emotional tendencies</li>
+                            <li>Consider your digestion and energy patterns</li>
+                            <li>Take an online dosha quiz for a more precise assessment</li>
+                        </ol>
+                        
+                        <h3>Daily Routine (Dinacharya)</h3>
+                        <ol>
+                            <li>Rise before sunrise</li>
+                            <li>Drink warm water</li>
+                            <li>Practice tongue scraping</li>
+                            <li>Perform oil pulling</li>
+                            <li>Exercise according to your dosha</li>
+                            <li>Eat a balanced meal at appropriate times</li>
+                            <li>Establish a consistent sleep schedule</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div class="tradition-section">
+                    <h2><i class="fas fa-utensils"></i> Interactive Dosha Quiz</h2>
+                    <div class="interactive-container">
+                        <p>Discover your unique Ayurvedic constitution with our interactive quiz!</p>
+                        <button class="breathing-btn" id="startDoshaQuiz">Take Dosha Quiz</button>
+                        <div id="doshaResult" style="display: none; margin-top: 1rem;">
+                            <p>Your dominant dosha is: <strong id="doshaType"></strong></p>
+                            <p id="doshaDescription"></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tradition-section">
+                    <h2><i class="fas fa-question-circle"></i> Personal Reflection</h2>
+                    <div class="reflection">
+                        <ul>
+                            <li>How do your current habits align with your dosha constitution?</li>
+                            <li>What small changes could you make to better support your balance?</li>
+                            <li>How does your environment affect your well-being according to Ayurvedic principles?</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Taichi Tab -->
+            <div class="tab-content" id="taichi">
+                <div class="tradition-section">
+                    <h2><i class="fas fa-book"></i> Core Principles and Philosophy</h2>
+                    <div class="principles">
+                        <p>Taichi is an ancient Chinese martial art practiced for both defense and health benefits. It combines slow, deliberate movements with deep breathing and mental focus.</p>
+                        <ul>
+                            <li>Yin and Yang: the balance of opposing forces</li>
+                            <li>Qi (Chi): the vital energy flowing through the body</li>
+                            <li>Mind-body connection through movement</li>
+                            <li>Softness overcoming hardness</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="tradition-section">
+                    <h2><i class="fas fa-hands"></i> Practical Exercises</h2>
+                    <div class="exercises">
+                        <h3>Basic Taichi Movements</h3>
+                        <ol>
+                            <li>Stand with feet shoulder-width apart, knees slightly bent</li>
+                            <li>Relax your shoulders and let your arms hang naturally</li>
+                            <li>Begin with slow, controlled arm movements</li>
+                            <li>Focus on your breath, inhaling as you expand, exhaling as you contract</li>
+                            <li>Practice for 10-15 minutes daily</li>
+                        </ol>
+                        
+                        <h3>Cloud Hands</h3>
+                        <ol>
+                            <li>Stand in a comfortable stance</li>
+                            <li>Shift weight to one leg as you raise one arm</li>
+                            <li>Move your arms in circular, cloud-like motions</li>
+                            <li>Shift weight from leg to leg as you move</li>
+                            <li>Continue for 5-10 minutes</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div class="tradition-section">
+                    <h2><i class="fas fa-walking"></i> Interactive Movement Guide</h2>
+                    <div class="interactive-container">
+                        <p>Follow along with our Taichi movement guide:</p>
+                        <div class="position-guide">
+                            <div class="position-card">
+                                <i class="fas fa-user"></i>
+                                <h4>Wuji Stance</h4>
+                            </div>
+                            <div class="position-card">
+                                <i class="fas fa-cloud"></i>
+                                <h4>Cloud Hands</h4>
+                            </div>
+                            <div class="position-card">
+                                <i class="fas fa-water"></i>
+                                <h4>Wave Hands</h4>
+                            </div>
+                            <div class="position-card">
+                                <i class="fas fa-sun"></i>
+                                <h4>Brush Knee</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tradition-section">
+                    <h2><i class="fas fa-question-circle"></i> Personal Reflection</h2>
+                    <div class="reflection">
+                        <ul>
+                            <li>How does slow, mindful movement affect your state of mind?</li>
+                            <li>Where do you notice tension in your body during practice?</li>
+                            <li>How can you apply the principle of balance to other areas of your life?</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Fengshui Tab -->
+            <div class="tab-content" id="fengshui">
+                <div class="tradition-section">
+                    <h2><i class="fas fa-book"></i> Core Principles and Philosophy</h2>
+                    <div class="principles">
+                        <p>Fengshui is the ancient Chinese art of arranging your environment to create harmony and balance with the natural world. It aims to optimize the flow of energy (Qi) in spaces.</p>
+                        <ul>
+                            <li>Qi: the life force or energy that flows through everything</li>
+                            <li>Yin and Yang: complementary forces that need balance</li>
+                            <li>Five elements: wood, fire, earth, metal, water</li>
+                            <li>Bagua: energy map used to analyze spaces</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="tradition-section">
+                    <h2><i class="fas fa-hands"></i> Practical Exercises</h2>
+                    <div class="exercises">
+                        <h3>Basic Fengshui Assessment</h3>
+                        <ol>
+                            <li>Stand at your front door and look into your home</li>
+                            <li>Clear clutter from entryways and pathways</li>
+                            <li>Ensure good natural light and air circulation</li>
+                            <li>Place plants in the wealth and health areas</li>
+                            <li>Use mirrors to redirect energy flow</li>
+                        </ol>
+                        
+                        <h3>Element Balancing</h3>
+                        <ol>
+                            <li>Identify the dominant element in each room</li>
+                            <li>Add the missing elements to create balance</li>
+                            <li>Use colors associated with each element</li>
+                            <li>Incorporate shapes that represent the elements</li>
+                            <li>Arrange furniture to support energy flow</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div class="tradition-section">
+                    <h2><i class="fas fa-home"></i> Interactive Room Layout</h2>
+                    <div class="interactive-container">
+                        <p>Drag and arrange elements to create a balanced fengshui layout:</p>
+                        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 1rem;">
+                            <div style="background-color: #8bc34a; padding: 20px; text-align: center; border-radius: 5px;">Wood</div>
+                            <div style="background-color: #ff9800; padding: 20px; text-align: center; border-radius: 5px;">Fire</div>
+                            <div style="background-color: #795548; padding: 20px; text-align: center; border-radius: 5px;">Earth</div>
+                            <div style="background-color: #9e9e9e; padding: 20px; text-align: center; border-radius: 5px;">Metal</div>
+                            <div style="background-color: #2196f3; padding: 20px; text-align: center; border-radius: 5px;">Water</div>
+                            <div style="background-color: #9c27b0; padding: 20px; text-align: center; border-radius: 5px;">Center</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tradition-section">
+                    <h2><i class="fas fa-question-circle"></i> Personal Reflection</h2>
+                    <div class="reflection">
+                        <ul>
+                            <li>How does your current living space make you feel?</li>
+                            <li>What areas of your home need more attention or balance?</li>
+                            <li>How can you apply fengshui principles to create a more supportive environment?</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Zen Tab -->
+            <div class="tab-content" id="zen">
+                <div class="tradition-section">
+                    <h2><i class="fas fa-book"></i> Core Principles and Philosophy</h2>
+                    <div class="principles">
+                        <p>Zen is a school of Mahayana Buddhism that emphasizes enlightenment through meditation, intuition, and direct experience rather than ritual or scripture.</p>
+                        <ul>
+                            <li>Zen teaches that enlightenment is accessible to everyone</li>
+                            <li>Mindfulness and presence are central to practice</li>
+                            <li>Direct experience is valued over intellectual understanding</li>
+                            <li>Simplicity and minimalism in all aspects of life</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="tradition-section">
+                    <h2><i class="fas fa-hands"></i> Practical Exercises</h2>
+                    <div class="exercises">
+                        <h3>Zen Meditation (Zazen)</h3>
+                        <ol>
+                            <li>Sit on a cushion with legs crossed or in a chair with feet flat</li>
+                            <li>Keep your spine straight but not rigid</li>
+                            <li>Rest your hands in your lap with palms up</li>
+                            <li>Focus on your breath without trying to control it</li>
+                            <li>When thoughts arise, acknowledge them and return to your breath</li>
+                            <li>Start with 5-10 minutes and gradually increase</li>
+                        </ol>
+                        
+                        <h3>Mindful Walking</h3>
+                        <ol>
+                            <li>Begin walking at a natural, unhurried pace</li>
+                            <li>Focus on the sensation of each step</li>
+                            <li>Notice the movement of your feet and legs</li>
+                            <li>Be aware of your surroundings without judgment</li>
+                            <li>Continue for 10-15 minutes</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div class="tradition-section">
+                    <h2><i class="fas fa-leaf"></i> Interactive Zen Garden</h2>
+                    <div class="interactive-container energy-flow">
+                        <p>Create your own virtual zen garden by raking the sand:</p>
+                        <div style="width: 100%; height: 200px; background-color: #f5deb3; position: relative; margin-top: 1rem; border-radius: 8px; overflow: hidden;">
+                            <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 80px; height: 80px; background-color: #8b4513; border-radius: 50%;"></div>
+                            <div id="zenGarden" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; cursor: pointer;"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tradition-section">
+                    <h2><i class="fas fa-question-circle"></i> Personal Reflection</h2>
+                    <div class="reflection">
+                        <ul>
+                            <li>What distractions prevent you from being fully present?</li>
+                            <li>How can you incorporate simplicity into your daily routine?</li>
+                            <li>What does "being present" mean to you in your everyday life?</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Detachment Tab -->
+            <div class="tab-content" id="detachment">
+                <div class="tradition-section">
+                    <h2><i class="fas fa-book"></i> Core Principles and Philosophy</h2>
+                    <div class="principles">
+                        <p>Detachment is the practice of letting go of attachment to outcomes, possessions, and identities. It's not about indifference but about freedom from being controlled by external circumstances.</p>
+                        <ul>
+                            <li>Attachment leads to suffering according to many traditions</li>
+                            <li>Detachment allows for inner peace regardless of external conditions</li>
+                            <li>It involves accepting what is while working toward what could be</li>
+                            <li>True detachment comes from understanding impermanence</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="tradition-section">
+                    <h2><i class="fas fa-hands"></i> Practical Exercises</h2>
+                    <div class="exercises">
+                        <h3>Letting Go Meditation</h3>
+                        <ol>
+                            <li>Sit comfortably and close your eyes</li>
+                            <li>Bring to mind something you're attached to</li>
+                            <li>Notice the physical sensations and emotions that arise</li>
+                            <li>Breathe into these sensations without judgment</li>
+                            <li>Visualize yourself releasing this attachment with each exhale</li>
+                            <li>Repeat with other attachments as they arise</li>
+                        </ol>
+                        
+                        <h3>Non-Attachment Journaling</h3>
+                        <ol>
+                            <li>Write about a situation where you felt attached to an outcome</li>
+                            <li>Explore how this attachment affected your peace of mind</li>
+                            <li>Consider what would happen if you let go of this attachment</li>
+                            <li>Write down what you can control versus what you can't</li>
+                            <li>Reflect on how this perspective shift feels</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div class="tradition-section">
+                    <h2><i class="fas fa-dove"></i> Interactive Detachment Exercise</h2>
+                    <div class="interactive-container">
+                        <p>Drag and release the balloons to practice letting go:</p>
+                        <div style="height: 200px; position: relative; margin-top: 1rem;">
+                            <div id="balloon1" style="position: absolute; bottom: 10px; left: 20%; width: 40px; height: 50px; background-color: #ff6b6b; border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%; cursor: grab;">🎈</div>
+                            <div id="balloon2" style="position: absolute; bottom: 10px; left: 40%; width: 40px; height: 50px; background-color: #4ecdc4; border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%; cursor: grab;">🎈</div>
+                            <div id="balloon3" style="position: absolute; bottom: 10px; left: 60%; width: 40px; height: 50px; background-color: #ffd166; border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%; cursor: grab;">🎈</div>
+                            <div id="balloon4" style="position: absolute; bottom: 10px; left: 80%; width: 40px; height: 50px; background-color: #6a0572; border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%; cursor: grab;">🎈</div>
+                        </div>
+                        <p style="margin-top: 1rem; font-style: italic;">Drag the balloons upward to release them</p>
+                    </div>
+                </div>
+
+                <div class="tradition-section">
+                    <h2><i class="fas fa-question-circle"></i> Personal Reflection</h2>
+                    <div class="reflection">
+                        <ul>
+                            <li>What attachments in your life cause you the most suffering?</li>
+                            <li>How might your life change if you practiced more detachment?</li>
+                            <li>What does "healthy detachment" versus "indifference" mean to you?</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Stoicism Tab -->
+            <div class="tab-content" id="stoicism">
+                <div class="tradition-section">
+                    <h2><i class="fas fa-book"></i> Core Principles and Philosophy</h2>
+                    <div class="principles">
+                        <p>Stoicism is an ancient Greek philosophy that teaches virtue, wisdom, and self-control as the path to happiness. It emphasizes focusing on what you can control and accepting what you cannot.</p>
+                        <ul>
+                            <li>Virtue is the only true good</li>
+                            <li>Accept what happens with equanimity</li>
+                            <li>Focus on your actions, not external events</li>
+                            <li>Live according to nature and reason</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="tradition-section">
+                    <h2><i class="fas fa-hands"></i> Practical Exercises</h2>
+                    <div class="exercises">
+                        <h3>The Dichotomy of Control</h3>
+                        <ol>
+                            <li>Identify a situation causing you distress</li>
+                            <li>List what you can control (your thoughts, actions, responses)</li>
+                            <li>List what you cannot control (other people, external events)</li>
+                            <li>Focus your energy only on what you can control</li>
+                            <li>Accept what you cannot control with equanimity</li>
+                        </ol>
+                        
+                        <h3>Stoic Journaling</h3>
+                        <ol>
+                            <li>Begin each day by stating what you're grateful for</li>
+                            <li>Reflect on your actions at the end of the day</li>
+                            <li>Ask: "Did I act virtuously today?"</li>
+                            <li>Consider: "What could I have done better?"</li>
+                            <li>Plan how to improve tomorrow</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div class="tradition-section">
+                    <h2><i class="fas fa-balance-scale"></i> Interactive Control Exercise</h2>
+                    <div class="interactive-container">
+                        <p>Separate what you can control from what you cannot:</p>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 1rem;">
+                            <div id="canControl" style="background-color: rgba(106, 176, 76, 0.1); padding: 1rem; border-radius: 8px; min-height: 150px;">
+                                <h4 style="text-align: center; color: var(--secondary-color);">I Can Control</h4>
+                                <div id="controlItems" style="margin-top: 10px;"></div>
+                            </div>
+                            <div id="cannotControl" style="background-color: rgba(58, 110, 165, 0.1); padding: 1rem; border-radius: 8px; min-height: 150px;">
+                                <h4 style="text-align: center; color: var(--primary-color);">I Cannot Control</h4>
+                                <div id="noControlItems" style="margin-top: 10px;"></div>
+                            </div>
+                        </div>
+                        <div style="margin-top: 1rem;">
+                            <input type="text" id="situationInput" placeholder="Enter a situation causing you stress" style="width: 100%; padding: 0.5rem; border-radius: 4px; border: 1px solid #ddd;">
+                            <button class="breathing-btn" id="analyzeSituation" style="margin-top: 0.5rem; width: 100%;">Analyze Situation</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tradition-section">
+                    <h2><i class="fas fa-question-circle"></i> Personal Reflection</h2>
+                    <div class="reflection">
+                        <ul>
+                            <li>How does your reaction to events change when you focus only on what you can control?</li>
+                            <li>What virtues do you value most, and how do you practice them?</li>
+                            <li>How can Stoic principles help you navigate modern challenges?</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Taoism Tab -->
+            <div class="tab-content" id="taoism">
+                <div class="tradition-section">
+                    <h2><i class="fas fa-book"></i> Core Principles and Philosophy</h2>
+                    <div class="principles">
+                        <p>Taoism is an ancient Chinese philosophy that emphasizes living in harmony with the Tao (the Way), the natural flow of the universe. It teaches simplicity, spontaneity, and wu wei (effortless action).</p>
+                        <ul>
+                            <li>The Tao is the underlying principle of the universe</li>
+                            <li>Wu wei: acting without force or struggle</li>
+                            <li>Yin and Yang: complementary forces in nature</li>
+                            <li>Return to simplicity and naturalness</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="tradition-section">
+                    <h2><i class="fas fa-hands"></i> Practical Exercises</h2>
+                    <div class="exercises">
+                        <h3>Water Meditation</h3>
+                        <ol>
+                            <li>Find a quiet place and sit comfortably</li>
+                            <li>Visualize yourself as flowing water</li>
+                            <li>Notice how water adapts to any container</li>
+                            <li>Imagine yourself being flexible and adaptable</li>
+                            <li>Reflect on how you can apply this flexibility to your life</li>
+                        </ol>
+                        
+                        <h3>Wu Wei Practice</h3>
+                        <ol>
+                            <li>Choose a simple daily task</li>
+                            <li>Perform it with complete attention but without force</li>
+                            <li>Notice when you're trying to control the outcome</li>
+                            <li>Release that control and allow the natural flow</li>
+                            <li>Observe how this changes your experience</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div class="tradition-section">
+                    <h2><i class="fas fa-water"></i> Interactive Flow Visualization</h2>
+                    <div class="interactive-container energy-flow">
+                        <p>Experience the flow of the Tao through this visualization:</p>
+                        <div style="width: 100%; height: 200px; background-color: #e3f2fd; position: relative; margin-top: 1rem; border-radius: 8px; overflow: hidden;">
+                            <div style="position: absolute; top: 50%; left: 0; width: 100%; height: 2px; background-color: #2196f3;"></div>
+                            <div id="flowParticles" style="position: absolute; width: 100%; height: 100%;"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tradition-section">
+                    <h2><i class="fas fa-question-circle"></i> Personal Reflection</h2>
+                    <div class="reflection">
+                        <ul>
+                            <li>Where in your life do you struggle against the natural flow?</li>
+                            <li>How can you be more like water—adaptable yet persistent?</li>
+                            <li>What does "effortless action" mean in your daily activities?</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tibetan Chi Tab -->
+            <div class="tab-content" id="tibetan-chi">
+                <div class="tradition-section">
+                    <h2><i class="fas fa-book"></i> Core Principles and Philosophy</h2>
+                    <div class="principles">
+                        <p>Tibetan Chi practices combine breathwork, movement, and visualization to cultivate and balance energy (Chi or Prana) in the body, promoting health, longevity, and spiritual development.</p>
+                        <ul>
+                            <li>Energy flows through channels (nadis) in the body</li>
+                            <li>Visualization directs energy to specific areas</li>
+                            <li>Combining breath with movement enhances energy flow</li>
+                            <li>Regular practice purifies and balances the energy system</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="tradition-section">
+                    <h2><i class="fas fa-hands"></i> Practical Exercises</h2>
+                    <div class="exercises">
+                        <h3>Five Tibetans</h3>
+                        <ol>
+                            <li>Spinning: Stand with arms outstretched, spin clockwise</li>
+                            <li>Headstand: Support body weight on head and hands</li>
+                            <li>Camel: Kneel and bend backward, hands on heels</li>
+                            <li>Tabletop: Sit with legs straight, hands behind hips, lift hips</li>
+                            <li>Upward Bow: Lie on stomach, lift body with hands and feet</li>
+                            <li>Repeat each movement 3-21 times</li>
+                        </ol>
+                        
+                        <h3>Energy Breathing</h3>
+                        <ol>
+                            <li>Sit comfortably with spine straight</li>
+                            <li>Visualize energy entering through the crown</li>
+                            <li>Inhale, drawing energy down through your body</li>
+                            <li>Exhale, releasing any blockages</li>
+                            <li>Repeat for 5-10 minutes</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div class="tradition-section">
+                    <h2><i class="fas fa-mountain"></i> Interactive Energy Flow</h2>
+                    <div class="interactive-container">
+                        <p>Visualize energy flowing through your body:</p>
+                        <div style="width: 100%; height: 300px; position: relative; margin-top: 1rem;">
+                            <div style="position: absolute; top: 10%; left: 50%; transform: translateX(-50%); width: 60px; height: 60px; background-color: #ff6b6b; border-radius: 50%;"></div>
+                            <div style="position: absolute; top: 30%; left: 50%; transform: translateX(-50%); width: 50px; height: 50px; background-color: #4ecdc4; border-radius: 50%;"></div>
+                            <div style="position: absolute; top: 50%; left: 50%; transform: translateX(-50%); width: 60px; height: 60px; background-color: #ffd166; border-radius: 50%;"></div>
+                            <div style="position: absolute; top: 70%; left: 50%; transform: translateX(-50%); width: 50px; height: 50px; background-color: #6a0572; border-radius: 50%;"></div>
+                            <div style="position: absolute; top: 90%; left: 50%; transform: translateX(-50%); width: 60px; height: 60px; background-color: #1a936f; border-radius: 50%;"></div>
+                            <div id="energyFlow" style="position: absolute; top: 10%; left: 50%; width: 10px; height: 10px; background-color: #333; border-radius: 50%; transform: translateX(-50%);"></div>
+                        </div>
+                        <button class="breathing-btn" id="startEnergyFlow" style="margin-top: 1rem;">Start Energy Flow</button>
+                    </div>
+                </div>
+
+                <div class="tradition-section">
+                    <h2><i class="fas fa-question-circle"></i> Personal Reflection</h2>
+                    <div class="reflection">
+                        <ul>
+                            <li>How do you feel after practicing energy exercises?</li>
+                            <li>Where do you notice energy blockages in your body?</li>
+                            <li>How can you incorporate energy awareness into your daily routine?</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chakras Tab -->
+            <div class="tab-content" id="chakras">
+                <div class="tradition-section">
+                    <h2><i class="fas fa-book"></i> Core Principles and Philosophy</h2>
+                    <div class="principles">
+                        <p>Chakras are energy centers in the subtle body that correspond to different physical, emotional, and spiritual aspects of our being. Balancing these energy centers promotes holistic well-being.</p>
+                        <ul>
+                            <li>Seven main chakras run along the spine</li>
+                            <li>Each chakra governs specific physical and emotional functions</li>
+                            <li>Blockages in chakras can manifest as physical or emotional issues</li>
+                            <li>Chakras can be balanced through various practices</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="tradition-section">
+                    <h2><i class="fas fa-hands"></i> Practical Exercises</h2>
+                    <div class="exercises">
+                        <h3>Chakra Meditation</h3>
+                        <ol>
+                            <li>Lie comfortably and begin with deep breathing</li>
+                            <li>Start at the root chakra (base of spine)</li>
+                            <li>Visualize a colored wheel spinning at each chakra location</li>
+                            <li>Focus on each chakra for 1-2 minutes</li>
+                            <li>Move up through all seven chakras</li>
+                        </ol>
+                        
+                        <h3>Chakra Affirmations</h3>
+                        <ol>
+                            <li>Root: "I am grounded and secure"</li>
+                            <li>Sacral: "I am creative and passionate"</li>
+                            <li>Solar Plexus: "I am confident and empowered"</li>
+                            <li>Heart: "I am open to love and compassion"</li>
+                            <li>Throat: "I express myself truthfully"</li>
+                            <li>Third Eye: "I see with clarity and intuition"</li>
+                            <li>Crown: "I am connected to universal wisdom"</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div class="tradition-section">
+                    <h2><i class="fas fa-circle-notch"></i> Interactive Chakra Balance</h2>
+                    <div class="interactive-container">
+                        <p>Balance your chakras by adjusting the energy flow:</p>
+                        <div style="display: flex; flex-direction: column; gap: 10px; margin-top: 1rem;">
+                            <div class="chakra-bar" data-chakra="root">
+                                <span style="width: 60px; display: inline-block;">Root</span>
+                                <div style="flex-grow: 1; height: 20px; background-color: #e0e0e0; border-radius: 10px; position: relative;">
+                                    <div class="chakra-fill" style="position: absolute; top: 0; left: 0; height: 100%; width: 70%; background-color: #ff6b6b; border-radius: 10px;"></div>
+                                </div>
+                            </div>
+                            <div class="chakra-bar" data-chakra="sacral">
+                                <span style="width: 60px; display: inline-block;">Sacral</span>
+                                <div style="flex-grow: 1; height: 20px; background-color: #e0e0e0; border-radius: 10px; position: relative;">
+                                    <div class="chakra-fill" style="position: absolute; top: 0; left: 0; height: 100%; width: 50%; background-color: #4ecdc4; border-radius: 10px;"></div>
+                                </div>
+                            </div>
+                            <div class="chakra-bar" data-chakra="solar">
+                                <span style="width: 60px; display: inline-block;">Solar</span>
+                                <div style="flex-grow: 1; height: 20px; background-color: #e0e0e0; border-radius: 10px; position: relative;">
+                                    <div class="chakra-fill" style="position: absolute; top: 0; left: 0; height: 100%; width: 80%; background-color: #ffd166; border-radius: 10px;"></div>
+                                </div>
+                            </div>
+                            <div class="chakra-bar" data-chakra="heart">
+                                <span style="width: 60px; display: inline-block;">Heart</span>
+                                <div style="flex-grow: 1; height: 20px; background-color: #e0e0e0; border-radius: 10px; position: relative;">
+                                    <div class="chakra-fill" style="position: absolute; top: 0; left: 0; height: 100%; width: 60%; background-color: #ff9ff3; border-radius: 10px;"></div>
+                                </div>
+                            </div>
+                            <div class="chakra-bar" data-chakra="throat">
+                                <span style="width: 60px; display: inline-block;">Throat</span>
+                                <div style="flex-grow: 1; height: 20px; background-color: #e0e0e0; border-radius: 10px; position: relative;">
+                                    <div class="chakra-fill" style="position: absolute; top: 0; left: 0; height: 100%; width: 40%; background-color: #74b9ff; border-radius: 10px;"></div>
+                                </div>
+                            </div>
+                            <div class="chakra-bar" data-chakra="third">
+                                <span style="width: 60px; display: inline-block;">Third Eye</span>
+                                <div style="flex-grow: 1; height: 20px; background-color: #e0e0e0; border-radius: 10px; position: relative;">
+                                    <div class="chakra-fill" style="position: absolute; top: 0; left: 0; height: 100%; width: 70%; background-color: #a29bfe; border-radius: 10px;"></div>
+                                </div>
+                            </div>
+                            <div class="chakra-bar" data-chakra="crown">
+                                <span style="width: 60px; display: inline-block;">Crown</span>
+                                <div style="flex-grow: 1; height: 20px; background-color: #e0e0e0; border-radius: 10px; position: relative;">
+                                    <div class="chakra-fill" style="position: absolute; top: 0; left: 0; height: 100%; width: 30%; background-color: #fd79a8; border-radius: 10px;"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="breathing-btn" id="balanceChakras" style="margin-top: 1rem;">Balance All Chakras</button>
+                    </div>
+                </div>
+
+                <div class="tradition-section">
+                    <h2><i class="fas fa-question-circle"></i> Personal Reflection</h2>
+                    <div class="reflection">
+                        <ul>
+                            <li>Which chakras feel most balanced or imbalanced in your life?</li>
+                            <li>How do emotions manifest in your body through chakra energy?</li>
+                            <li>What practices help you maintain chakra balance?</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Connection Map Section -->
+        <section class="connection-map">
+            <h2><i class="fas fa-project-diagram"></i> How Traditions Connect</h2>
+            <p>Despite their different origins and expressions, these wisdom traditions share fundamental principles that complement each other:</p>
+            
+            <div class="connection-grid">
+                <div class="connection-card">
+                    <h3>Mind-Body Connection</h3>
+                    <p>All traditions emphasize the unity of mind and body, recognizing that physical practices influence mental states and vice versa.</p>
+                </div>
+                
+                <div class="connection-card">
+                    <h3>Energy Flow</h3>
+                    <p>Whether called prana, chi, or life force, the concept of vital energy flowing through the body appears across many traditions.</p>
+                </div>
+                
+                <div class="connection-card">
+                    <h3>Balance & Harmony</h3>
+                    <p>From yin-yang in Taoism to dosha balance in Ayurveda, finding equilibrium is a universal goal.</p>
+                </div>
+                
+                <div class="connection-card">
+                    <h3>Mindfulness</h3>
+                    <p>Present-moment awareness is central to practices from Zen meditation to mindful breathing in yoga.</p>
+                </div>
+                
+                <div class="connection-card">
+                    <h3>Self-Awareness</h3>
+                    <p>Understanding oneself through introspection is a common thread across all wisdom traditions.</p>
+                </div>
+                
+                <div class="connection-card">
+                    <h3>Connection to Nature</h3>
+                    <p>Harmonizing with natural rhythms and elements is a principle found in Taichi, Fengshui, and Taoism.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Progress Tracker Section -->
+        <section class="progress-tracker">
+            <h2><i class="fas fa-chart-line"></i> Your Journey Progress</h2>
+            <p>Track your exploration of different wisdom traditions:</p>
+            
+            <div id="progressList">
+                <!-- Progress items will be dynamically generated here -->
+            </div>
+            
+            <button class="generate-btn" id="resetProgress">Reset Progress</button>
+        </section>
+
+        <!-- Daily Practice Generator Section -->
+        <section class="daily-practice">
+            <h2><i class="fas fa-calendar-day"></i> Daily Practice Suggestion</h2>
+            <p>Get a personalized daily practice suggestion based on your interests and progress:</p>
+            
+            <button class="generate-btn" id="generatePractice">Generate Practice</button>
+            
+            <div id="practiceResult" class="practice-result">
+                <h3 id="practiceTitle"></h3>
+                <p id="practiceDescription"></p>
+                <div id="practiceSteps"></div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2023 Wisdom Traditions: A Journey to Life Fundamentals | Created with intention for your well-being</p>
+    </footer>
+
+    <script>
+        // Tab Navigation
+        const tabButtons = document.querySelectorAll('.tab-btn');
+        const tabContents = document.querySelectorAll('.tab-content');
+        
+        tabButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const tabId = button.getAttribute('data-tab');
+                
+                // Remove active class from all buttons and contents
+                tabButtons.forEach(btn => btn.classList.remove('active'));
+                tabContents.forEach(content => content.classList.remove('active'));
+                
+                // Add active class to clicked button and corresponding content
+                button.classList.add('active');
+                document.getElementById(tabId).classList.add('active');
+                
+                // Update navigation links
+                document.querySelectorAll('.nav-link').forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === `#${tabId}`) {
+                        link.classList.add('active');
+                    }
+                });
+                
+                // Save progress
+                saveProgress(tabId);
+            });
+        });
+        
+        // Navigation Toggle for Mobile
+        const navToggle = document.getElementById('navToggle');
+        const navMenu = document.getElementById('navMenu');
+        
+        navToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+        
+        // Navigation Links
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetId = link.getAttribute('href').substring(1);
+                const targetTab = document.querySelector(`[data-tab="${targetId}"]`);
+                
+                if (targetTab) {
+                    // Remove active class from all buttons and contents
+                    tabButtons.forEach(btn => btn.classList.remove('active'));
+                    tabContents.forEach(content => content.classList.remove('active'));
+                    
+                    // Add active class to target button and content
+                    targetTab.classList.add('active');
+                    document.getElementById(targetId).classList.add('active');
+                    
+                    // Close mobile menu
+                    navMenu.classList.remove('active');
+                }
+            });
+        });
+        
+        // Breathing Timer
+        let breathingInterval;
+        let isBreathingActive = false;
+        const startBreathingBtn = document.getElementById('startBreathing');
+        const breathPhase = document.getElementById('breathPhase');
+        const breathCount = document.getElementById('breathCount');
+        
+        startBreathingBtn.addEventListener('click', () => {
+            if (!isBreathingActive) {
+                startBreathingExercise();
+                startBreathingBtn.textContent = 'Stop Breathing Exercise';
+                isBreathingActive = true;
+            } else {
+                stopBreathingExercise();
+                startBreathingBtn.textContent = 'Start Breathing Exercise';
+                isBreathingActive = false;
+            }
+        });
+        
+        function startBreathingExercise() {
+            let phase = 'inhale';
+            let count = 4;
+            
+            breathingInterval = setInterval(() => {
+                breathPhase.textContent = phase.charAt(0).toUpperCase() + phase.slice(1);
+                breathCount.textContent = count;
+                
+                if (phase === 'inhale') {
+                    count--;
+                    if (count === 0) {
+                        phase = 'hold';
+                        count = 2;
+                    }
+                } else if (phase === 'hold') {
+                    count--;
+                    if (count === 0) {
+                        phase = 'exhale';
+                        count = 6;
+                    }
+                } else if (phase === 'exhale') {
+                    count--;
+                    if (count === 0) {
+                        phase = 'inhale';
+                        count = 4;
+                    }
+                }
+            }, 1000);
+        }
+        
+        function stopBreathingExercise() {
+            clearInterval(breathingInterval);
+            breathPhase.textContent = 'Inhale';
+            breathCount.textContent = '4';
+        }
+        
+        // Dosha Quiz
+        const startDoshaQuizBtn = document.getElementById('startDoshaQuiz');
+        const doshaResult = document.getElementById('doshaResult');
+        const doshaType = document.getElementById('doshaType');
+        const doshaDescription = document.getElementById('doshaDescription');
+        
+        startDoshaQuizBtn.addEventListener('click', () => {
+            // Simulate dosha quiz result
+            const doshas = ['Vata', 'Pitta', 'Kapha'];
+            const randomDosha = doshas[Math.floor(Math.random() * doshas.length)];
+            
+            doshaType.textContent = randomDosha;
+            
+            const descriptions = {
+                'Vata': 'You have a Vata constitution. You are creative, energetic, and adaptable but may experience anxiety when imbalanced. Focus on routine, warm foods, and grounding practices.',
+                'Pitta': 'You have a Pitta constitution. You are focused, intelligent, and determined but may become irritable when imbalanced. Focus on cooling foods, stress management, and moderation.',
+                'Kapha': 'You have a Kapha constitution. You are calm, loyal, and steady but may become lethargic when imbalanced. Focus on regular exercise, stimulating activities, and light foods.'
+            };
+            
+            doshaDescription.textContent = descriptions[randomDosha];
+            doshaResult.style.display = 'block';
+        });
+        
+        // Zen Garden Raking
+        const zenGarden = document.getElementById('zenGarden');
+        let isRaking = false;
+        let lastX = 0;
+        let lastY = 0;
+        
+        zenGarden.addEventListener('mousedown', (e) => {
+            isRaking = true;
+            lastX = e.offsetX;
+            lastY = e.offsetY;
+        });
+        
+        document.addEventListener('mouseup', () => {
+            isRaking = false;
+        });
+        
+        document.addEventListener('mousemove', (e) => {
+            if (isRaking && zenGarden) {
+                const rect = zenGarden.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                const dx = x - lastX;
+                const dy = y - lastY;
+                
+                const distance = Math.sqrt(dx * dx + dy * dy);
+                
+                if (distance > 5) {
+                    const line = document.createElement('div');
+                    line.style.position = 'absolute';
+                    line.style.top = `${lastY}px`;
+                    line.style.left = `${lastX}px`;
+                    line.style.width = `${distance}px`;
+                    line.style.height = '1px';
+                    line.style.background = '#8b4513';
+                    line.style.transform = `rotate(${Math.atan2(dy, dx)}rad)`;
+                    line.style.transformOrigin = '0 0';
+                    
+                    zenGarden.appendChild(line);
+                    
+                    lastX = x;
+                    lastY = y;
+                }
+            }
+        });
+        
+        // Detachment Balloons
+        const balloons = document.querySelectorAll('[id^="balloon"]');
+        
+        balloons.forEach(balloon => {
+            let isDragging = false;
+            let offsetX, offsetY;
+            
+            balloon.addEventListener('mousedown', (e) => {
+                isDragging = true;
+                offsetX = e.clientX - balloon.offsetLeft;
+                offsetY = e.clientY - balloon.offsetTop;
+                balloon.style.cursor = 'grabbing';
+            });
+            
+            document.addEventListener('mousemove', (e) => {
+                if (isDragging) {
+                    balloon.style.left = `${e.clientX - offsetX}px`;
+                    balloon.style.top = `${e.clientY - offsetY}px`;
+                }
+            });
+            
+            document.addEventListener('mouseup', () => {
+                if (isDragging && parseFloat(balloon.style.top) < -50) {
+                    // Balloon released above the viewport
+                    balloon.style.transition = 'all 1s ease-out';
+                    balloon.style.transform = 'translateY(-100vh)';
+                    balloon.style.opacity = '0';
+                    
+                    setTimeout(() => {
+                        balloon.style.transition = '';
+                        balloon.style.top = '10px';
+                        balloon.style.left = `${Math.random() * 80 + 10}%`;
+                        balloon.style.transform = '';
+                        balloon.style.opacity = '1';
+                    }, 1000);
+                }
+                
+                isDragging = false;
+                balloon.style.cursor = 'grab';
+            });
+        });
+        
+        // Stoicism Control Exercise
+        const analyzeSituationBtn = document.getElementById('analyzeSituation');
+        const situationInput = document.getElementById('situationInput');
+        const controlItems = document.getElementById('controlItems');
+        const noControlItems = document.getElementById('noControlItems');
+        
+        analyzeSituationBtn.addEventListener('click', () => {
+            const situation = situationInput.value.trim();
+            if (!situation) return;
+            
+            // Clear previous items
+            controlItems.innerHTML = '';
+            noControlItems.innerHTML = '';
+            
+            // Example analysis (in a real app, this would be more sophisticated)
+            const controlExamples = [
+                'My response to the situation',
+                'My attitude and perspective',
+                'My preparation and effort',
+                'How I communicate with others',
+                'My focus and attention'
+            ];
+            
+            const noControlExamples = [
+                'Other people\'s actions or opinions',
+                'External circumstances',
+                'Past events',
+                'Future outcomes',
+                'The weather or traffic'
+            ];
+            
+            controlExamples.forEach(item => {
+                const div = document.createElement('div');
+                div.style.marginBottom = '5px';
+                div.innerHTML = `<i class="fas fa-check" style="color: var(--secondary-color); margin-right: 5px;"></i>${item}`;
+                controlItems.appendChild(div);
+            });
+            
+            noControlExamples.forEach(item => {
+                const div = document.createElement('div');
+                div.style.marginBottom = '5px';
+                div.innerHTML = `<i class="fas fa-times" style="color: var(--primary-color); margin-right: 5px;"></i>${item}`;
+                noControlItems.appendChild(div);
+            });
+        });
+        
+        // Tao Energy Flow
+        const startEnergyFlowBtn = document.getElementById('startEnergyFlow');
+        const energyFlow = document.getElementById('energyFlow');
+        let energyInterval;
+        
+        startEnergyFlowBtn.addEventListener('click', () => {
+            if (startEnergyFlowBtn.textContent === 'Start Energy Flow') {
+                startEnergyFlow();
+                startEnergyFlowBtn.textContent = 'Stop Energy Flow';
+            } else {
+                stopEnergyFlow();
+                startEnergyFlowBtn.textContent = 'Start Energy Flow';
+            }
+        });
+        
+        function startEnergyFlow() {
+            let position = 10;
+            energyInterval = setInterval(() => {
+                position += 2;
+                if (position > 90) {
+                    position = 10;
+                }
+                energyFlow.style.top = `${position}%`;
+            }, 50);
+        }
+        
+        function stopEnergyFlow() {
+            clearInterval(energyInterval);
+            energyFlow.style.top = '10%';
+        }
+        
+        // Chakra Balance
+        const balanceChakrasBtn = document.getElementById('balanceChakras');
+        const chakraBars = document.querySelectorAll('.chakra-bar');
+        
+        balanceChakrasBtn.addEventListener('click', () => {
+            chakraBars.forEach(bar => {
+                const fill = bar.querySelector('.chakra-fill');
+                const randomWidth = Math.floor(Math.random() * 40) + 60; // 60-100%
+                fill.style.width = `${randomWidth}%`;
+            });
+        });
+        
+        // Progress Tracker
+        function loadProgress() {
+            const savedProgress = localStorage.getItem('wisdomProgress');
+            if (savedProgress) {
+                const progressData = JSON.parse(savedProgress);
+                updateProgressDisplay(progressData);
+            } else {
+                initializeProgress();
+            }
+        }
+        
+        function initializeProgress() {
+            const progressData = {};
+            tabButtons.forEach(button => {
+                const tabId = button.getAttribute('data-tab');
+                progressData[tabId] = {
+                    visited: false,
+                    lastVisit: null,
+                    practices: 0
+                };
+            });
+            localStorage.setItem('wisdomProgress', JSON.stringify(progressData));
+            updateProgressDisplay(progressData);
+        }
+        
+        function saveProgress(tabId) {
+            const savedProgress = localStorage.getItem('wisdomProgress');
+            let progressData;
+            
+            if (savedProgress) {
+                progressData = JSON.parse(savedProgress);
+            } else {
+                progressData = {};
+            }
+            
+            if (!progressData[tabId]) {
+                progressData[tabId] = {
+                    visited: false,
+                    lastVisit: null,
+                    practices: 0
+                };
+            }
+            
+            progressData[tabId].visited = true;
+            progressData[tabId].lastVisit = new Date().toISOString();
+            progressData[tabId].practices++;
+            
+            localStorage.setItem('wisdomProgress', JSON.stringify(progressData));
+            updateProgressDisplay(progressData);
+        }
+        
+        function updateProgressDisplay(progressData) {
+            const progressList = document.getElementById('progressList');
+            progressList.innerHTML = '';
+            
+            Object.entries(progressData).forEach(([tabId, data]) => {
+                const progressItem = document.createElement('div');
+                progressItem.className = 'progress-item';
+                
+                const progressPercent = (data.practices / 10) * 100; // Max 10 practices per tradition
+                const progressWidth = Math.min(progressPercent, 100);
+                
+                const tabName = tabButtons.find(btn => btn.getAttribute('data-tab') === tabId)?.textContent || tabId;
+                
+                progressItem.innerHTML = `
+                    <div style="display: flex; align-items: center; gap: 10px;">
+                        <i class="fas ${data.visited ? 'fa-check-circle' : 'fa-circle'}" style="color: ${data.visited ? 'var(--secondary-color)' : '#ccc'};"></i>
+                        <span>${tabName}</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: ${progressWidth}%"></div>
+                    </div>
+                    <div style="text-align: right;">
+                        <div>${data.practices} practices</div>
+                        ${data.lastVisit ? `<div style="font-size: 0.8rem; color: #666;">Last: ${new Date(data.lastVisit).toLocaleDateString()}</div>` : ''}
+                    </div>
+                `;
+                
+                progressList.appendChild(progressItem);
+            });
+        }
+        
+        document.getElementById('resetProgress').addEventListener('click', () => {
+            if (confirm('Are you sure you want to reset all your progress?')) {
+                localStorage.removeItem('wisdomProgress');
+                initializeProgress();
+            }
+        });
+        
+        // Daily Practice Generator
+        const generatePracticeBtn = document.getElementById('generatePractice');
+        const practiceResult = document.getElementById('practiceResult');
+        const practiceTitle = document.getElementById('practiceTitle');
+        const practiceDescription = document.getElementById('practiceDescription');
+        const practiceSteps = document.getElementById('practiceSteps');
+        
+        generatePracticeBtn.addEventListener('click', () => {
+            const practices = [
+                {
+                    title: 'Morning Mindfulness',
+                    description: 'Start your day with a 5-minute mindfulness practice to set a calm, intentional tone for the day.',
+                    steps: [
+                        'Find a quiet spot to sit comfortably',
+                        'Close your eyes and take three deep breaths',
+                        'Notice the sensations in your body without judgment',
+                        'Bring awareness to your thoughts as they come and go',
+                        'Gently open your eyes when ready'
+                    ]
+                },
+                {
+                    title: 'Energy Flow Meditation',
+                    description: 'A 10-minute meditation to balance your energy centers and promote vitality.',
+                    steps: [
+                        'Sit comfortably with your spine straight',
+                        'Place your hands on your lower abdomen',
+                        'Inhale deeply, imagining energy flowing up from your feet',
+                        'Exhale, releasing any tension or blockages',
+                        'Move your hands to different energy centers as you visualize light filling them'
+                    ]
+                },
+                {
+                    title: 'Gratitude Reflection',
+                    description: 'Reflect on three things you\'re grateful for today to cultivate positive energy.',
+                    steps: [
+                        'Find a quiet moment for reflection',
+                        'Think of three specific things from today that you appreciate',
+                        'Consider why each thing matters to you',
+                        'Notice how this reflection makes you feel',
+                        'Carry this gratitude with you throughout the day'
+                    ]
+                },
+                {
+                    title: 'Movement Practice',
+                    description: 'Gentle movement to connect mind and body, releasing tension and increasing energy.',
+                    steps: [
+                        'Stand with feet shoulder-width apart',
+                        'Take a few deep breaths to center yourself',
+                        'Slowly roll your neck, shoulders, and wrists',
+                        'Gently sway from side to side',
+                        'End with a moment of stillness, noticing how your body feels'
+                    ]
+                },
+                {
+                    title: 'Breathing Exercise',
+                    description: 'A simple breathing technique to calm your nervous system and increase focus.',
+                    steps: [
+                        'Sit or lie down comfortably',
+                        'Place one hand on your chest, one on your belly',
+                        'Inhale slowly through your nose for 4 counts',
+                        'Hold your breath for 4 counts',
+                        'Exhale slowly through your mouth for 6 counts',
+                        'Repeat for 5-10 cycles'
+                    ]
+                }
+            ];
+            
+            // Get saved progress to personalize recommendations
+            const savedProgress = localStorage.getItem('wisdomProgress');
+            let progressData = {};
+            let lessVisitedTraditions = [];
+            
+            if (savedProgress) {
+                progressData = JSON.parse(savedProgress);
+                Object.entries(progressData).forEach(([tabId, data]) => {
+                    if (data.practices < 3) {
+                        lessVisitedTraditions.push(tabId);
+                    }
+                });
+            }
+            
+            // Select a practice (prioritize less visited traditions if available)
+            let selectedPractice;
+            if (lessVisitedTraditions.length > 0) {
+                // Weight selection toward less visited traditions
+                const weights = lessVisitedTraditions.map(() => 0.7);
+                const otherWeight = 0.3 / (practices.length - lessVisitedTraditions.length);
+                
+                const allWeights = [];
+                practices.forEach((_, i) => {
+                    if (lessVisitedTraditions.includes(i)) {
+                        allWeights.push(0.7);
+                    } else {
+                        allWeights.push(otherWeight);
+                    }
+                });
+                
+                // Normalize weights
+                const totalWeight = allWeights.reduce((a, b) => a + b, 0);
+                const normalizedWeights = allWeights.map(w => w / totalWeight);
+                
+                // Select based on weights
+                let random = Math.random();
+                let selectedIndex = 0;
+                let cumulativeWeight = 0;
+                
+                for (let i = 0; i < normalizedWeights.length; i++) {
+                    cumulativeWeight += normalizedWeights[i];
+                    if (random < cumulativeWeight) {
+                        selectedIndex = i;
+                        break;
+                    }
+                }
+                
+                selectedPractice = practices[selectedIndex];
+            } else {
+                // Random selection if all traditions have been visited
+                selectedPractice = practices[Math.floor(Math.random() * practices.length)];
+            }
+            
+            // Display selected practice
+            practiceTitle.textContent = selectedPractice.title;
+            practiceDescription.textContent = selectedPractice.description;
+            
+            practiceSteps.innerHTML = '';
+            selectedPractice.steps.forEach(step => {
+                const stepElement = document.createElement('div');
+                stepElement.style.marginBottom = '10px';
+                stepElement.innerHTML = `<i class="fas fa-chevron-right" style="color: var(--secondary-color); margin-right: 10px;"></i>${step}`;
+                practiceSteps.appendChild(stepElement);
+            });
+            
+            practiceResult.style.display = 'block';
+        });
+        
+        // Initialize progress on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            loadProgress();
+            
+            // Set initial active tab
+            const activeTab = document.querySelector('.tab-btn.active');
+            if (activeTab) {
+                const tabId = activeTab.getAttribute('data-tab');
+                saveProgress(tabId);
+            }
+        });
+    </script>
+</body>
+</html>
