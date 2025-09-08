@@ -1,12 +1,14 @@
 :root {
-    --primaria: #6b5b95;
-    --secundaria: #88d8b0;
-    --destaque: #ffcc5c;
-    --texto: #333;
-    --fundo: #fefefe;
-    --cartao: #ffffff;
-    --sombra: 0 4px 20px rgba(0,0,0,0.08);
-    --transicao: all 0.4s ease;
+    --zen-green: #7cb342;
+    --zen-light: #dcedc8;
+    --zen-dark: #33691e;
+    --zen-sky: #87ceeb;
+    --zen-sunset: #ffab91;
+    --zen-night: #1a237e;
+    --zen-text: #2e7d32;
+    --zen-bg: #f1f8e9;
+    --zen-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    --zen-transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 * {
@@ -16,278 +18,454 @@
 }
 
 body {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-    line-height: 1.7;
-    color: var(--texto);
-    background: var(--fundo);
-}
-
-/* Header */
-header {
-    background: linear-gradient(135deg, var(--primaria), #8b7eb8);
-    padding: 1.5rem 0;
-    box-shadow: var(--sombra);
-    position: sticky;
-    top: 0;
-    z-index: 100;
-}
-
-.container-cabecalho {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 2rem;
+    font-family: 'Noto Serif', 'Georgia', serif;
+    background: var(--zen-bg);
+    color: var(--zen-text);
+    min-height: 100vh;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
+    overflow-x: hidden;
 }
 
-.logo {
-    font-size: 1.8rem;
-    font-weight: 700;
-    color: white;
-    display: flex;
-    align-items: center;
-    gap: 0.8rem;
-}
-
-.logo i {
-    color: var(--destaque);
-}
-
-/* Navegação */
-nav ul {
-    display: flex;
-    gap: 1.5rem;
-    list-style: none;
-}
-
-nav ul li a {
-    color: white;
-    text-decoration: none;
-    padding: 0.6rem 1.2rem;
-    border-radius: 25px;
-    font-weight: 500;
-    transition: var(--transicao);
-}
-
-nav ul li a:hover, nav ul li a.ativo {
-    background: rgba(255,255,255,0.2);
-}
-
-/* Introdução */
-.intro {
-    background: linear-gradient(135deg, #f6d365 0%, #fda085 100%);
-    padding: 4rem 2rem;
-    text-align: center;
-}
-
-.container-intro {
-    max-width: 800px;
-    margin: 0 auto;
-}
-
-.intro h1 {
-    font-size: 2.5rem;
-    color: white;
-    margin-bottom: 1.5rem;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
-}
-
-/* Conteúdo Principal */
-.container-principal {
+/* Container Principal (Centralizado) */
+.zen-container {
+    width: 100%;
     max-width: 1200px;
     margin: 0 auto;
     padding: 2rem;
+    text-align: center;
 }
 
-.container-abas {
-    background: var(--cartao);
-    border-radius: 20px;
-    box-shadow: var(--sombra);
-    margin-bottom: 2rem;
+/* Cabeçalho */
+.zen-header {
+    margin-bottom: 3rem;
+    animation: fadeInDown 1s ease;
+}
+
+.zen-header h1 {
+    font-size: 3rem;
+    color: var(--zen-dark);
+    margin-bottom: 0.5rem;
+    font-weight: 300;
+    letter-spacing: 2px;
+}
+
+.zen-header p {
+    font-size: 1.2rem;
+    color: var(--zen-green);
+    font-style: italic;
+}
+
+/* Jardim Principal */
+.zen-garden {
+    background: white;
+    border-radius: 30px;
+    box-shadow: var(--zen-shadow);
+    padding: 3rem;
+    margin-bottom: 3rem;
+    position: relative;
     overflow: hidden;
 }
 
-.navegacao-abas {
-    display: flex;
-    flex-wrap: wrap;
-    background: linear-gradient(to right, #f8f9fa, #e9ecef);
-    padding: 1rem;
-    gap: 0.5rem;
+.garden-area {
+    position: relative;
+    height: 400px;
+    margin-bottom: 3rem;
+    border-radius: 20px;
+    overflow: hidden;
 }
 
-.aba-btn {
+/* Céu */
+.sky {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 60%;
+    background: linear-gradient(to bottom, var(--zen-sky), #e3f2fd);
+    transition: var(--zen-transition);
+}
+
+.sky.night {
+    background: linear-gradient(to bottom, var(--zen-night), #3949ab);
+}
+
+.sun-moon {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 3rem;
+    color: #ffd54f;
+    transition: var(--zen-transition);
+    animation: float 6s ease-in-out infinite;
+}
+
+.sun-moon.night {
+    color: #e3f2fd;
+    transform: rotate(180deg);
+}
+
+.clouds {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.cloud {
+    position: absolute;
     background: white;
-    border: none;
-    padding: 1rem 1.5rem;
-    border-radius: 15px;
-    cursor: pointer;
-    font-weight: 600;
-    transition: var(--transicao);
-    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    border-radius: 100px;
+    opacity: 0.7;
+    animation: drift 20s infinite;
 }
 
-.aba-btn:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+.cloud1 {
+    width: 80px;
+    height: 40px;
+    top: 30px;
+    left: 20%;
+    animation-duration: 25s;
 }
 
-.aba-btn.ativa {
-    background: var(--primaria);
-    color: white;
-    transform: scale(1.05);
+.cloud2 {
+    width: 60px;
+    height: 30px;
+    top: 60px;
+    right: 30%;
+    animation-duration: 30s;
+    animation-delay: -10s;
 }
 
-.conteudo-aba {
-    display: none;
-    padding: 3rem;
-    animation: fadeIn 0.6s ease;
+/* Chão */
+.ground {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 40%;
+    background: linear-gradient(to bottom, #8bc34a, #689f38);
+    transition: var(--zen-transition);
 }
 
-.conteudo-aba.ativa {
-    display: block;
+.ground.night {
+    background: linear-gradient(to bottom, #2e7d32, #1b5e20);
 }
 
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
+.garden-path {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 100%;
+    background: linear-gradient(to bottom, #d4a574, #c19a6b);
+    clip-path: polygon(40% 0%, 60% 0%, 50% 100%);
 }
 
-/* Seções de Tradição */
-.secao-tradicao {
-    margin-bottom: 2.5rem;
-}
-
-.secao-tradicao h2 {
-    color: var(--primaria);
-    margin-bottom: 1.5rem;
+/* Flores */
+.flowers-container {
+    position: absolute;
+    bottom: 20%;
+    left: 50%;
+    transform: translateX(-50%);
     display: flex;
-    align-items: center;
-    gap: 1rem;
-    font-size: 1.8rem;
-    font-weight: 700;
+    gap: 30px;
 }
 
-.secao-tradicao h2 i {
-    color: var(--secundaria);
+.flower {
+    width: 40px;
+    height: 60px;
+    position: relative;
+    transition: var(--zen-transition);
+    opacity: 0;
+    transform: scale(0) translateY(20px);
 }
 
-.principios, .exercicios, .reflexao {
-    background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+.flower.grown {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+}
+
+.flower::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 3px;
+    height: 40px;
+    background: #4caf50;
+}
+
+.flower::after {
+    content: '';
+    position: absolute;
+    bottom: 35px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 25px;
+    height: 25px;
+    background: var(--zen-light);
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(124, 179, 66, 0.5);
+}
+
+.flower1 { animation-delay: 0.2s; }
+.flower2 { animation-delay: 0.4s; }
+.flower3 { animation-delay: 0.6s; }
+
+/* Botões Zen */
+.zen-btn {
+    background: linear-gradient(135deg, var(--zen-green), #689f38);
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 1rem;
+    margin: 0.5rem;
+    transition: var(--zen-transition);
+    box-shadow: 0 4px 15px rgba(124, 179, 66, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.zen-btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255,255,255,0.3);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.zen-btn:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
+.zen-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(124, 179, 66, 0.4);
+}
+
+/* Seções */
+.meditation-section,
+.reflection-section,
+.progress-section {
+    background: white;
+    border-radius: 20px;
     padding: 2rem;
-    border-radius: 15px;
+    margin-bottom: 2rem;
+    box-shadow: var(--zen-shadow);
+    animation: fadeInUp 1s ease;
+}
+
+.meditation-section h2,
+.reflection-section h2,
+.progress-section h2 {
+    color: var(--zen-dark);
     margin-bottom: 1.5rem;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-    border-left: 5px solid var(--secundaria);
+    font-size: 1.8rem;
+    font-weight: 400;
 }
 
-.principios ul, .exercicios ol {
-    margin-left: 20px;
-    margin-bottom: 1rem;
-}
-
-/* Elementos Interativos */
-.container-interativo {
-    background: linear-gradient(135deg, #e0f7fa 0%, #b2ebf2 100%);
-    padding: 2.5rem;
-    border-radius: 15px;
-    margin: 2rem 0;
-    text-align: center;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-}
-
-.cronometro-respiracao {
+/* Cronômetro de Meditação */
+.meditation-timer {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 2rem;
 }
 
-.circulo {
+.timer-circle {
     width: 200px;
     height: 200px;
     border-radius: 50%;
-    background: linear-gradient(135deg, var(--primaria), #8b7eb8);
+    background: linear-gradient(135deg, var(--zen-light), #c8e6c9);
     display: flex;
     align-items: center;
     justify-content: center;
-    color: white;
-    font-size: 1.5rem;
-    box-shadow: 0 10px 30px rgba(107, 91, 149, 0.3);
+    box-shadow: 0 10px 30px rgba(124, 179, 66, 0.2);
+    position: relative;
+    overflow: hidden;
 }
 
-.btn-respiracao {
-    background: linear-gradient(135deg, var(--secundaria), #7dd3c0);
-    color: white;
-    border: none;
-    padding: 1rem 2.5rem;
-    border-radius: 30px;
-    cursor: pointer;
-    font-size: 1.1rem;
-    font-weight: 600;
-    transition: var(--transicao);
-    box-shadow: 0 4px 15px rgba(136, 216, 176, 0.3);
+.timer-circle::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+    background-size: 20px 20px;
+    animation: rotate 20s linear infinite;
 }
 
-.btn-respiracao:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 25px rgba(136, 216, 176, 0.4);
+.timer-inner {
+    position: relative;
+    z-index: 1;
 }
 
-/* Seções Únicas */
-.mapa-conexao, .rastreamento-progresso, .pratica-diaria {
-    background: var(--cartao);
-    border-radius: 20px;
-    padding: 2.5rem;
-    margin-bottom: 2rem;
-    box-shadow: var(--sombra);
+.timer-inner span:first-child {
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--zen-dark);
 }
 
-.grid-conexao {
+.timer-controls {
+    display: flex;
+    gap: 1rem;
+}
+
+/* Cartão de Reflexão */
+.reflection-card {
+    background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
+    border-radius: 15px;
+    padding: 2rem;
+    margin-bottom: 1rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.reflection-card::before {
+    content: '"';
+    position: absolute;
+    top: 10px;
+    left: 20px;
+    font-size: 4rem;
+    color: var(--zen-green);
+    opacity: 0.3;
+}
+
+.reflection-card p {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    color: var(--zen-dark);
+    font-style: italic;
+    position: relative;
+    z-index: 1;
+}
+
+/* Estatísticas de Progresso */
+.progress-stats {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 2rem;
     margin-top: 1.5rem;
 }
 
-.card-conexao {
-    background: rgba(107, 91, 149, 0.05);
-    padding: 1.5rem;
+.stat {
+    background: var(--zen-bg);
     border-radius: 15px;
-    transition: var(--transicao);
+    padding: 1.5rem;
+    transition: var(--zen-transition);
 }
 
-.card-conexao:hover {
-    background: rgba(107, 91, 149, 0.1);
+.stat:hover {
     transform: translateY(-5px);
+    box-shadow: var(--zen-shadow);
+}
+
+.stat i {
+    font-size: 2rem;
+    color: var(--zen-green);
+    margin-bottom: 0.5rem;
+}
+
+.stat span {
+    display: block;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--zen-dark);
+    margin-bottom: 0.5rem;
+}
+
+.stat div {
+    font-size: 0.9rem;
+    color: var(--zen-green);
 }
 
 /* Rodapé */
-footer {
-    background: linear-gradient(135deg, #2c3e50, #34495e);
-    color: white;
+.zen-footer {
     text-align: center;
     padding: 2rem;
-    margin-top: 3rem;
+    color: var(--zen-green);
+    font-style: italic;
+}
+
+/* Animações */
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+@keyframes drift {
+    0% { transform: translateX(-100px); }
+    100% { transform: translateX(calc(100vw + 100px)); }
+}
+
+@keyframes rotate {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }
 
 /* Responsividade */
 @media (max-width: 768px) {
-    .container-cabecalho {
-        flex-direction: column;
-        gap: 1rem;
+    .zen-container {
+        padding: 1rem;
     }
     
-    nav ul {
-        flex-direction: column;
-        gap: 0.5rem;
-    }
-    
-    .intro h1 {
+    .zen-header h1 {
         font-size: 2rem;
     }
     
-    .conteudo-aba {
-        padding: 1.5rem;
+    .zen-garden {
+        padding: 2rem 1rem;
+    }
+    
+    .garden-area {
+        height: 300px;
+    }
+    
+    .timer-circle {
+        width: 150px;
+        height: 150px;
+    }
+    
+    .timer-inner span:first-child {
+        font-size: 2rem;
+    }
+    
+    .progress-stats {
+        grid-template-columns: 1fr;
     }
 }
