@@ -1,236 +1,195 @@
-// Navegação por abas
-const abaBtns = document.querySelectorAll('.aba-btn');
-const conteudoAbas = document.querySelectorAll('.conteudo-aba');
+// Variáveis globais
+let isDay = true;
+let meditationTimer;
+let meditationSeconds = 300; // 5 minutos
+let isMeditating = false;
+let daysStreak = parseInt(localStorage.getItem('daysStreak') || '0');
+let totalMinutes = parseInt(localStorage.getItem('totalMinutes') || '0');
+let flowersGrown = parseInt(localStorage.getItem('flowersGrown') || '0');
 
-abaBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-        const abaId = btn.getAttribute('data-aba');
-        
-        // Remover classes ativas
-        abaBtns.forEach(b => b.classList.remove('ativa'));
-        conteudoAbas.forEach(c => c.classList.remove('ativa'));
-        
-        // Adicionar classes ativas
-        btn.classList.add('ativa');
-        document.getElementById(abaId).classList.add('ativa');
-        
-        // Salvar progresso
-        salvarProgresso(abaId);
-    });
-});
-
-// Cronômetro de Respiração
-let intervaloRespiracao;
-let estaAtivo = false;
-const iniciarBtn = document.getElementById('iniciarRespiracao');
-const faseSpan = document.getElementById('faseRespiracao');
-const contagemSpan = document.getElementById('contagemRespiracao');
-
-iniciarBtn.addEventListener('click', () => {
-    if (!estaAtivo) {
-        iniciarCronometro();
-        iniciarBtn.textContent = 'Parar Exercício';
-        estaAtivo = true;
-    } else {
-        pararCronometro();
-        iniciarBtn.textContent = 'Iniciar Exercício';
-        estaAtivo = false;
-    }
-});
-
-function iniciarCronometro() {
-    let fase = 'inspire';
-    let contagem = 4;
-    
-    intervaloRespiracao = setInterval(() => {
-        faseSpan.textContent = fase.charAt(0).toUpperCase() + fase.slice(1);
-        contagemSpan.textContent = contagem;
-        
-        if (fase === 'inspire') {
-            contagem--;
-            if (contagem === 0) {
-                fase = 'segure';
-                contagem = 2;
-            }
-        } else if (fase === 'segure') {
-            contagem--;
-            if (contagem === 0) {
-                fase = 'expire';
-                contagem = 6;
-            }
-        } else if (fase === 'expire') {
-            contagem--;
-            if (contagem === 0) {
-                fase = 'inspire';
-                contagem = 4;
-            }
-        }
-    }, 1000);
-}
-
-function pararCronometro() {
-    clearInterval(intervaloRespiracao);
-    faseSpan.textContent = 'Inspire';
-    contagemSpan.textContent = '4';
-}
-
-// Quiz Ayurveda
-const iniciarQuizBtn = document.getElementById('iniciarQuiz');
-const resultadoQuiz = document.getElementById('resultadoQuiz');
-const tipoDosha = document.getElementById('tipoDosha');
-const descricaoDosha = document.getElementById('descricaoDosha');
-
-iniciarQuizBtn.addEventListener('click', () => {
-    const doshas = ['Vata', 'Pitta', 'Kapha'];
-    const aleatorio = doshas[Math.floor(Math.random() * doshas.length)];
-    
-    tipoDosha.textContent = aleatorio;
-    
-    const descricoes = {
-        'Vata': 'Você tem constituição Vata. É criativo, energético e adaptável, mas pode ansiar quando desequilibrado.',
-        'Pitta': 'Você tem constituição Pitta. É focado, inteligente e determinado, mas pode ficar irritado quando desequilibrado.',
-        'Kapha': 'Você tem constituição Kapha. É calmo, leal e estável, mas pode ficar letárgico quando desequilibrado.'
-    };
-    
-    descricaoDosha.textContent = descricoes[aleatorio];
-    resultadoQuiz.style.display = 'block';
-});
-
-// Rastreamento de Progresso
-function carregarProgresso() {
-    const salvo = localStorage.getItem('progressoSabedoria');
-    if (salvo) {
-        const dados = JSON.parse(salvo);
-        atualizarProgresso(dados);
-    } else {
-        inicializarProgresso();
-    }
-}
-
-function inicializarProgresso() {
-    const dados = {};
-    abaBtns.forEach(btn => {
-        const abaId = btn.getAttribute('data-aba');
-        dados[abaId] = {
-            visitado: false,
-            ultimaVisita: null,
-            praticas: 0
-        };
-    });
-    localStorage.setItem('progressoSabedoria', JSON.stringify(dados));
-    atualizarProgresso(dados);
-}
-
-function salvarProgresso(abaId) {
-    const salvo = localStorage.getItem('progressoSabedoria');
-    let dados = salvo ? JSON.parse(salvo) : {};
-    
-    if (!dados[abaId]) {
-        dados[abaId] = {
-            visitado: false,
-            ultimaVisita: null,
-            praticas: 0
-        };
-    }
-    
-    dados[abaId].visitado = true;
-    dados[abaId].ultimaVisita = new Date().toISOString();
-    dados[abaId].praticas++;
-    
-    localStorage.setItem('progressoSabedoria', JSON.stringify(dados));
-    atualizarProgresso(dados);
-}
-
-function atualizarProgresso(dados) {
-    const lista = document.getElementById('listaProgresso');
-    lista.innerHTML = '';
-    
-    Object.entries(dados).forEach(([abaId, info]) => {
-        const progresso = (info.praticas / 10) * 100;
-        const nome = document.querySelector(`[data-aba="${abaId}"]`).textContent;
-        
-        const item = document.createElement('div');
-        item.className = 'item-progresso';
-        item.innerHTML = `
-            <div style="display: flex; align-items: center; gap: 10px;">
-                <i class="fas ${info.visitado ? 'fa-check-circle' : 'fa-circle'}" 
-                   style="color: ${info.visitado ? '#88d8b0' : '#ccc'};"></i>
-                <span>${nome}</span>
-            </div>
-            <div style="flex-grow: 1; height: 10px; background: #e0e0e0; border-radius: 5px; overflow: hidden;">
-                <div style="height: 100%; width: ${progresso}%; background: #88d8b0; border-radius: 5px; transition: width 0.5s;"></div>
-            </div>
-            <div style="text-align: right;">
-                <div>${info.praticas} práticas</div>
-            </div>
-        `;
-        lista.appendChild(item);
-    });
-}
-
-document.getElementById('resetarProgresso').addEventListener('click', () => {
-    if (confirm('Tem certeza que quer resetar todo o progresso?')) {
-        localStorage.removeItem('progressoSabedoria');
-        inicializarProgresso();
-    }
-});
-
-// Gerador de Prática Diária
-const gerarBtn = document.getElementById('gerarPratica');
-const resultadoPratica = document.getElementById('resultadoPratica');
-const tituloPratica = document.getElementById('tituloPratica');
-const descricaoPratica = document.getElementById('descricaoPratica');
-const passosPratica = document.getElementById('passosPratica');
-
-const praticas = [
-    {
-        titulo: 'Mindfulness Matinal',
-        descricao: 'Comece o dia com 5 minutos de mindfulness para estabelecer um tom calmo e intencional.',
-        passos: [
-            'Encontre um local tranquilo para sentar',
-            'Feche os olhos e respire profundamente 3 vezes',
-            'Observe as sensações do corpo sem julgamento',
-            'Traga atenção para os pensamentos como eles vêm e vão',
-            'Abra os olhos quando estiver pronto'
-        ]
-    },
-    {
-        titulo: 'Meditação de Energia',
-        descricao: 'Meditação de 10 minutos para equilibrar seus centros de energia.',
-        passos: [
-            'Sente-se confortavelmente com a coluna reta',
-            'Coloque as mãos no abdômen inferior',
-            'Inspire profundamente, imaginando energia subindo dos pés',
-            'Exspire, liberando qualquer tensão',
-            'Mova as mãos para diferentes centros de energia visualizando luz'
-        ]
-    }
+// Reflexões diárias
+const reflections = [
+    "A paz começa dentro de você. Encontre silêncio no meio do caos.",
+    "Cada respiração é uma nova oportunidade de recomeçar.",
+    "Simplicidade é a chave para a verdadeira riqueza.",
+    "O presente é o único momento que realmente existe.",
+    "Deixe ir o que não pode controlar, abrace o que pode.",
+    "A natureza ensina sabedoria silenciosa e poderosa.",
+    "Cultive gratidão como a mais bela flor do jardim.",
+    "Em cada desafio, há uma lição esperando para ser aprendida."
 ];
-
-gerarBtn.addEventListener('click', () => {
-    const aleatoria = praticas[Math.floor(Math.random() * praticas.length)];
-    
-    tituloPratica.textContent = aleatoria.titulo;
-    descricaoPratica.textContent = aleatoria.descricao;
-    
-    passosPratica.innerHTML = '';
-    aleatoria.passos.forEach(passo => {
-        const div = document.createElement('div');
-        div.style.marginBottom = '10px';
-        div.innerHTML = `<i class="fas fa-chevron-right" style="color: #88d8b0; margin-right: 10px;"></i>${passo}`;
-        passosPratica.appendChild(div);
-    });
-    
-    resultadoPratica.style.display = 'block';
-});
 
 // Inicialização
 document.addEventListener('DOMContentLoaded', () => {
-    carregarProgresso();
+    updateStats();
+    checkDailyVisit();
     
-    const ativa = document.querySelector('.aba-btn.ativa');
-    if (ativa) {
-        const abaId = ativa.getAttribute('data-aba');
-        salvarProgresso(abaId);
-    }
+    // Event listeners
+    document.getElementById('growFlowers').addEventListener('click', growFlowers);
+    document.getElementById('dayNightBtn').addEventListener('click', toggleDayNight);
+    document.getElementById('startMeditation').addEventListener('click', startMeditation);
+    document.getElementById('pauseMeditation').addEventListener('click', pauseMeditation);
+    document.getElementById('resetMeditation').addEventListener('click', resetMeditation);
+    document.getElementById('newReflection').addEventListener('click', newReflection);
 });
+
+// Fazer flores crescer
+function growFlowers() {
+    const flowers = document.querySelectorAll('.flower');
+    flowers.forEach((flower, index) => {
+        setTimeout(() => {
+            flower.classList.add('grown');
+            flowersGrown++;
+            localStorage.setItem('flowersGrown', flowersGrown.toString());
+            updateStats();
+        }, index * 300);
+    });
+}
+
+// Alternar dia e noite
+function toggleDayNight() {
+    const sky = document.getElementById('sky');
+    const ground = document.getElementById('ground');
+    const sunMoon = document.getElementById('sunMoon');
+    const dayNightBtn = document.getElementById('dayNightBtn');
+    
+    isDay = !isDay;
+    
+    if (isDay) {
+        sky.classList.remove('night');
+        ground.classList.remove('night');
+        sunMoon.classList.remove('night');
+        dayNightBtn.innerHTML = '<i class="fas fa-moon"></i> Mudar para Noite';
+    } else {
+        sky.classList.add('night');
+        ground.classList.add('night');
+        sunMoon.classList.add('night');
+        dayNightBtn.innerHTML = '<i class="fas fa-sun"></i> Mudar para Dia';
+    }
+}
+
+// Meditação
+function startMeditation() {
+    if (!isMeditating) {
+        isMeditating = true;
+        meditationTimer = setInterval(() => {
+            meditationSeconds--;
+            updateTimerDisplay();
+            
+            if (meditationSeconds <= 0) {
+                completeMeditation();
+            }
+        }, 1000);
+    }
+}
+
+function pauseMeditation() {
+    if (isMeditating) {
+        isMeditating = false;
+        clearInterval(meditationTimer);
+    }
+}
+
+function resetMeditation() {
+    isMeditating = false;
+    clearInterval(meditationTimer);
+    meditationSeconds = 300;
+    updateTimerDisplay();
+}
+
+function completeMeditation() {
+    isMeditating = false;
+    clearInterval(meditationTimer);
+    meditationSeconds = 300;
+    updateTimerDisplay();
+    
+    // Adicionar minutos ao total
+    const minutesAdded = 5;
+    totalMinutes += minutesAdded;
+    localStorage.setItem('totalMinutes', totalMinutes.toString());
+    updateStats();
+    
+    // Mostrar mensagem de conclusão
+    showNotification('🧘‍♀️ Meditação concluída! Sinta a paz interior.');
+}
+
+function updateTimerDisplay() {
+    const minutes = Math.floor(meditationSeconds / 60);
+    const seconds = meditationSeconds % 60;
+    document.getElementById('timerMinutes').textContent = minutes.toString().padStart(2, '0');
+}
+
+// Nova reflexão
+function newReflection() {
+    const randomReflection = reflections[Math.floor(Math.random() * reflections.length)];
+    const reflectionText = document.getElementById('reflectionText');
+    
+    reflectionText.style.opacity = '0';
+    setTimeout(() => {
+        reflectionText.textContent = randomReflection;
+        reflectionText.style.opacity = '1';
+    }, 300);
+}
+
+// Atualizar estatísticas
+function updateStats() {
+    document.getElementById('daysStreak').textContent = daysStreak;
+    document.getElementById('totalMinutes').textContent = totalMinutes;
+    document.getElementById('flowersGrown').textContent = flowersGrown;
+}
+
+// Verificar visita diária
+function checkDailyVisit() {
+    const lastVisit = localStorage.getItem('lastVisit');
+    const today = new Date().toDateString();
+    
+    if (lastVisit !== today) {
+        // Nova visita diária
+        daysStreak++;
+        localStorage.setItem('daysStreak', daysStreak.toString());
+        localStorage.setItem('lastVisit', today);
+        updateStats();
+    }
+}
+
+// Notificação
+function showNotification(message) {
+    const notification = document.createElement('div');
+    notification.className = 'zen-notification';
+    notification.innerHTML = `<i class="fas fa-check-circle"></i> ${message}`;
+    document.body.appendChild(notification);
+    
+    setTimeout(() => {
+        notification.style.opacity = '0';
+        setTimeout(() => notification.remove(), 300);
+    }, 3000);
+}
+
+// Adicionar estilo para notificação
+const style = document.createElement('style');
+style.textContent = `
+    .zen-notification {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: linear-gradient(135deg, var(--zen-green), #689f38);
+        color: white;
+        padding: 1rem 2rem;
+        border-radius: 10px;
+        box-shadow: var(--zen-shadow);
+        z-index: 1000;
+        animation: slideIn 0.5s ease;
+    }
+    
+    @keyframes slideIn {
+        from {
+            transform: translateX(100%);
+            opacity: 0;
+        }
+        to {
+            transform: translateX(0);
+            opacity: 1;
+        }
+    }
+`;
+document.head.appendChild(style);
