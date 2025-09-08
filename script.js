@@ -1,549 +1,236 @@
-// Tab Navigation
-const tabButtons = document.querySelectorAll('.tab-btn');
-const tabContents = document.querySelectorAll('.tab-content');
+// Navegação por abas
+const abaBtns = document.querySelectorAll('.aba-btn');
+const conteudoAbas = document.querySelectorAll('.conteudo-aba');
 
-tabButtons.forEach(button => {
-    button.addEventListener('click', () => {
-        const tabId = button.getAttribute('data-tab');
+abaBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+        const abaId = btn.getAttribute('data-aba');
         
-        // Remove active class from all buttons and contents
-        tabButtons.forEach(btn => btn.classList.remove('active'));
-        tabContents.forEach(content => content.classList.remove('active'));
+        // Remover classes ativas
+        abaBtns.forEach(b => b.classList.remove('ativa'));
+        conteudoAbas.forEach(c => c.classList.remove('ativa'));
         
-        // Add active class to clicked button and corresponding content
-        button.classList.add('active');
-        document.getElementById(tabId).classList.add('active');
+        // Adicionar classes ativas
+        btn.classList.add('ativa');
+        document.getElementById(abaId).classList.add('ativa');
         
-        // Update navigation links
-        document.querySelectorAll('.nav-link').forEach(link => {
-            link.classList.remove('active');
-            if (link.getAttribute('href') === `#${tabId}`) {
-                link.classList.add('active');
-            }
-        });
-        
-        // Save progress
-        saveProgress(tabId);
+        // Salvar progresso
+        salvarProgresso(abaId);
     });
 });
 
-// Navigation Toggle for Mobile
-const navToggle = document.getElementById('navToggle');
-const navMenu = document.getElementById('navMenu');
+// Cronômetro de Respiração
+let intervaloRespiracao;
+let estaAtivo = false;
+const iniciarBtn = document.getElementById('iniciarRespiracao');
+const faseSpan = document.getElementById('faseRespiracao');
+const contagemSpan = document.getElementById('contagemRespiracao');
 
-navToggle.addEventListener('click', () => {
-    navMenu.classList.toggle('active');
-});
-
-// Navigation Links
-document.querySelectorAll('.nav-link').forEach(link => {
-    link.addEventListener('click', (e) => {
-        e.preventDefault();
-        const targetId = link.getAttribute('href').substring(1);
-        const targetTab = document.querySelector(`[data-tab="${targetId}"]`);
-        
-        if (targetTab) {
-            // Remove active class from all buttons and contents
-            tabButtons.forEach(btn => btn.classList.remove('active'));
-            tabContents.forEach(content => content.classList.remove('active'));
-            
-            // Add active class to target button and content
-            targetTab.classList.add('active');
-            document.getElementById(targetId).classList.add('active');
-            
-            // Close mobile menu
-            navMenu.classList.remove('active');
-        }
-    });
-});
-
-// Breathing Timer
-let breathingInterval;
-let isBreathingActive = false;
-const startBreathingBtn = document.getElementById('startBreathing');
-const breathPhase = document.getElementById('breathPhase');
-const breathCount = document.getElementById('breathCount');
-
-startBreathingBtn.addEventListener('click', () => {
-    if (!isBreathingActive) {
-        startBreathingExercise();
-        startBreathingBtn.textContent = 'Stop Breathing Exercise';
-        isBreathingActive = true;
+iniciarBtn.addEventListener('click', () => {
+    if (!estaAtivo) {
+        iniciarCronometro();
+        iniciarBtn.textContent = 'Parar Exercício';
+        estaAtivo = true;
     } else {
-        stopBreathingExercise();
-        startBreathingBtn.textContent = 'Start Breathing Exercise';
-        isBreathingActive = false;
+        pararCronometro();
+        iniciarBtn.textContent = 'Iniciar Exercício';
+        estaAtivo = false;
     }
 });
 
-function startBreathingExercise() {
-    let phase = 'inhale';
-    let count = 4;
+function iniciarCronometro() {
+    let fase = 'inspire';
+    let contagem = 4;
     
-    breathingInterval = setInterval(() => {
-        breathPhase.textContent = phase.charAt(0).toUpperCase() + phase.slice(1);
-        breathCount.textContent = count;
+    intervaloRespiracao = setInterval(() => {
+        faseSpan.textContent = fase.charAt(0).toUpperCase() + fase.slice(1);
+        contagemSpan.textContent = contagem;
         
-        if (phase === 'inhale') {
-            count--;
-            if (count === 0) {
-                phase = 'hold';
-                count = 2;
+        if (fase === 'inspire') {
+            contagem--;
+            if (contagem === 0) {
+                fase = 'segure';
+                contagem = 2;
             }
-        } else if (phase === 'hold') {
-            count--;
-            if (count === 0) {
-                phase = 'exhale';
-                count = 6;
+        } else if (fase === 'segure') {
+            contagem--;
+            if (contagem === 0) {
+                fase = 'expire';
+                contagem = 6;
             }
-        } else if (phase === 'exhale') {
-            count--;
-            if (count === 0) {
-                phase = 'inhale';
-                count = 4;
+        } else if (fase === 'expire') {
+            contagem--;
+            if (contagem === 0) {
+                fase = 'inspire';
+                contagem = 4;
             }
         }
     }, 1000);
 }
 
-function stopBreathingExercise() {
-    clearInterval(breathingInterval);
-    breathPhase.textContent = 'Inhale';
-    breathCount.textContent = '4';
+function pararCronometro() {
+    clearInterval(intervaloRespiracao);
+    faseSpan.textContent = 'Inspire';
+    contagemSpan.textContent = '4';
 }
 
-// Dosha Quiz
-const startDoshaQuizBtn = document.getElementById('startDoshaQuiz');
-const doshaResult = document.getElementById('doshaResult');
-const doshaType = document.getElementById('doshaType');
-const doshaDescription = document.getElementById('doshaDescription');
+// Quiz Ayurveda
+const iniciarQuizBtn = document.getElementById('iniciarQuiz');
+const resultadoQuiz = document.getElementById('resultadoQuiz');
+const tipoDosha = document.getElementById('tipoDosha');
+const descricaoDosha = document.getElementById('descricaoDosha');
 
-startDoshaQuizBtn.addEventListener('click', () => {
-    // Simulate dosha quiz result
+iniciarQuizBtn.addEventListener('click', () => {
     const doshas = ['Vata', 'Pitta', 'Kapha'];
-    const randomDosha = doshas[Math.floor(Math.random() * doshas.length)];
+    const aleatorio = doshas[Math.floor(Math.random() * doshas.length)];
     
-    doshaType.textContent = randomDosha;
+    tipoDosha.textContent = aleatorio;
     
-    const descriptions = {
-        'Vata': 'You have a Vata constitution. You are creative, energetic, and adaptable but may experience anxiety when imbalanced. Focus on routine, warm foods, and grounding practices.',
-        'Pitta': 'You have a Pitta constitution. You are focused, intelligent, and determined but may become irritable when imbalanced. Focus on cooling foods, stress management, and moderation.',
-        'Kapha': 'You have a Kapha constitution. You are calm, loyal, and steady but may become lethargic when imbalanced. Focus on regular exercise, stimulating activities, and light foods.'
+    const descricoes = {
+        'Vata': 'Você tem constituição Vata. É criativo, energético e adaptável, mas pode ansiar quando desequilibrado.',
+        'Pitta': 'Você tem constituição Pitta. É focado, inteligente e determinado, mas pode ficar irritado quando desequilibrado.',
+        'Kapha': 'Você tem constituição Kapha. É calmo, leal e estável, mas pode ficar letárgico quando desequilibrado.'
     };
     
-    doshaDescription.textContent = descriptions[randomDosha];
-    doshaResult.style.display = 'block';
+    descricaoDosha.textContent = descricoes[aleatorio];
+    resultadoQuiz.style.display = 'block';
 });
 
-// Zen Garden Raking
-const zenGarden = document.getElementById('zenGarden');
-let isRaking = false;
-let lastX = 0;
-let lastY = 0;
-
-zenGarden.addEventListener('mousedown', (e) => {
-    isRaking = true;
-    lastX = e.offsetX;
-    lastY = e.offsetY;
-});
-
-document.addEventListener('mouseup', () => {
-    isRaking = false;
-});
-
-document.addEventListener('mousemove', (e) => {
-    if (isRaking && zenGarden) {
-        const rect = zenGarden.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        
-        const dx = x - lastX;
-        const dy = y - lastY;
-        
-        const distance = Math.sqrt(dx * dx + dy * dy);
-        
-        if (distance > 5) {
-            const line = document.createElement('div');
-            line.style.position = 'absolute';
-            line.style.top = `${lastY}px`;
-            line.style.left = `${lastX}px`;
-            line.style.width = `${distance}px`;
-            line.style.height = '1px';
-            line.style.background = '#8b4513';
-            line.style.transform = `rotate(${Math.atan2(dy, dx)}rad)`;
-            line.style.transformOrigin = '0 0';
-            
-            zenGarden.appendChild(line);
-            
-            lastX = x;
-            lastY = y;
-        }
-    }
-});
-
-// Detachment Balloons
-const balloons = document.querySelectorAll('[id^="balloon"]');
-
-balloons.forEach(balloon => {
-    let isDragging = false;
-    let offsetX, offsetY;
-    
-    balloon.addEventListener('mousedown', (e) => {
-        isDragging = true;
-        offsetX = e.clientX - balloon.offsetLeft;
-        offsetY = e.clientY - balloon.offsetTop;
-        balloon.style.cursor = 'grabbing';
-    });
-    
-    document.addEventListener('mousemove', (e) => {
-        if (isDragging) {
-            balloon.style.left = `${e.clientX - offsetX}px`;
-            balloon.style.top = `${e.clientY - offsetY}px`;
-        }
-    });
-    
-    document.addEventListener('mouseup', () => {
-        if (isDragging && parseFloat(balloon.style.top) < -50) {
-            // Balloon released above the viewport
-            balloon.style.transition = 'all 1s ease-out';
-            balloon.style.transform = 'translateY(-100vh)';
-            balloon.style.opacity = '0';
-            
-            setTimeout(() => {
-                balloon.style.transition = '';
-                balloon.style.top = '10px';
-                balloon.style.left = `${Math.random() * 80 + 10}%`;
-                balloon.style.transform = '';
-                balloon.style.opacity = '1';
-            }, 1000);
-        }
-        
-        isDragging = false;
-        balloon.style.cursor = 'grab';
-    });
-});
-
-// Stoicism Control Exercise
-const analyzeSituationBtn = document.getElementById('analyzeSituation');
-const situationInput = document.getElementById('situationInput');
-const controlItems = document.getElementById('controlItems');
-const noControlItems = document.getElementById('noControlItems');
-
-analyzeSituationBtn.addEventListener('click', () => {
-    const situation = situationInput.value.trim();
-    if (!situation) return;
-    
-    // Clear previous items
-    controlItems.innerHTML = '';
-    noControlItems.innerHTML = '';
-    
-    // Example analysis (in a real app, this would be more sophisticated)
-    const controlExamples = [
-        'My response to the situation',
-        'My attitude and perspective',
-        'My preparation and effort',
-        'How I communicate with others',
-        'My focus and attention'
-    ];
-    
-    const noControlExamples = [
-        'Other people\'s actions or opinions',
-        'External circumstances',
-        'Past events',
-        'Future outcomes',
-        'The weather or traffic'
-    ];
-    
-    controlExamples.forEach(item => {
-        const div = document.createElement('div');
-        div.style.marginBottom = '5px';
-        div.innerHTML = `<i class="fas fa-check" style="color: var(--secondary-color); margin-right: 5px;"></i>${item}`;
-        controlItems.appendChild(div);
-    });
-    
-    noControlExamples.forEach(item => {
-        const div = document.createElement('div');
-        div.style.marginBottom = '5px';
-        div.innerHTML = `<i class="fas fa-times" style="color: var(--primary-color); margin-right: 5px;"></i>${item}`;
-        noControlItems.appendChild(div);
-    });
-});
-
-// Tao Energy Flow
-const startEnergyFlowBtn = document.getElementById('startEnergyFlow');
-const energyFlow = document.getElementById('energyFlow');
-let energyInterval;
-
-startEnergyFlowBtn.addEventListener('click', () => {
-    if (startEnergyFlowBtn.textContent === 'Start Energy Flow') {
-        startEnergyFlow();
-        startEnergyFlowBtn.textContent = 'Stop Energy Flow';
+// Rastreamento de Progresso
+function carregarProgresso() {
+    const salvo = localStorage.getItem('progressoSabedoria');
+    if (salvo) {
+        const dados = JSON.parse(salvo);
+        atualizarProgresso(dados);
     } else {
-        stopEnergyFlow();
-        startEnergyFlowBtn.textContent = 'Start Energy Flow';
-    }
-});
-
-function startEnergyFlow() {
-    let position = 10;
-    energyInterval = setInterval(() => {
-        position += 2;
-        if (position > 90) {
-            position = 10;
-        }
-        energyFlow.style.top = `${position}%`;
-    }, 50);
-}
-
-function stopEnergyFlow() {
-    clearInterval(energyInterval);
-    energyFlow.style.top = '10%';
-}
-
-// Chakra Balance
-const balanceChakrasBtn = document.getElementById('balanceChakras');
-const chakraBars = document.querySelectorAll('.chakra-bar');
-
-balanceChakrasBtn.addEventListener('click', () => {
-    chakraBars.forEach(bar => {
-        const fill = bar.querySelector('.chakra-fill');
-        const randomWidth = Math.floor(Math.random() * 40) + 60; // 60-100%
-        fill.style.width = `${randomWidth}%`;
-    });
-});
-
-// Progress Tracker
-function loadProgress() {
-    const savedProgress = localStorage.getItem('wisdomProgress');
-    if (savedProgress) {
-        const progressData = JSON.parse(savedProgress);
-        updateProgressDisplay(progressData);
-    } else {
-        initializeProgress();
+        inicializarProgresso();
     }
 }
 
-function initializeProgress() {
-    const progressData = {};
-    tabButtons.forEach(button => {
-        const tabId = button.getAttribute('data-tab');
-        progressData[tabId] = {
-            visited: false,
-            lastVisit: null,
-            practices: 0
+function inicializarProgresso() {
+    const dados = {};
+    abaBtns.forEach(btn => {
+        const abaId = btn.getAttribute('data-aba');
+        dados[abaId] = {
+            visitado: false,
+            ultimaVisita: null,
+            praticas: 0
         };
     });
-    localStorage.setItem('wisdomProgress', JSON.stringify(progressData));
-    updateProgressDisplay(progressData);
+    localStorage.setItem('progressoSabedoria', JSON.stringify(dados));
+    atualizarProgresso(dados);
 }
 
-function saveProgress(tabId) {
-    const savedProgress = localStorage.getItem('wisdomProgress');
-    let progressData;
+function salvarProgresso(abaId) {
+    const salvo = localStorage.getItem('progressoSabedoria');
+    let dados = salvo ? JSON.parse(salvo) : {};
     
-    if (savedProgress) {
-        progressData = JSON.parse(savedProgress);
-    } else {
-        progressData = {};
-    }
-    
-    if (!progressData[tabId]) {
-        progressData[tabId] = {
-            visited: false,
-            lastVisit: null,
-            practices: 0
+    if (!dados[abaId]) {
+        dados[abaId] = {
+            visitado: false,
+            ultimaVisita: null,
+            praticas: 0
         };
     }
     
-    progressData[tabId].visited = true;
-    progressData[tabId].lastVisit = new Date().toISOString();
-    progressData[tabId].practices++;
+    dados[abaId].visitado = true;
+    dados[abaId].ultimaVisita = new Date().toISOString();
+    dados[abaId].praticas++;
     
-    localStorage.setItem('wisdomProgress', JSON.stringify(progressData));
-    updateProgressDisplay(progressData);
+    localStorage.setItem('progressoSabedoria', JSON.stringify(dados));
+    atualizarProgresso(dados);
 }
 
-function updateProgressDisplay(progressData) {
-    const progressList = document.getElementById('progressList');
-    progressList.innerHTML = '';
+function atualizarProgresso(dados) {
+    const lista = document.getElementById('listaProgresso');
+    lista.innerHTML = '';
     
-    Object.entries(progressData).forEach(([tabId, data]) => {
-        const progressItem = document.createElement('div');
-        progressItem.className = 'progress-item';
+    Object.entries(dados).forEach(([abaId, info]) => {
+        const progresso = (info.praticas / 10) * 100;
+        const nome = document.querySelector(`[data-aba="${abaId}"]`).textContent;
         
-        const progressPercent = (data.practices / 10) * 100; // Max 10 practices per tradition
-        const progressWidth = Math.min(progressPercent, 100);
-        
-        const tabName = tabButtons.find(btn => btn.getAttribute('data-tab') === tabId)?.textContent || tabId;
-        
-        progressItem.innerHTML = `
+        const item = document.createElement('div');
+        item.className = 'item-progresso';
+        item.innerHTML = `
             <div style="display: flex; align-items: center; gap: 10px;">
-                <i class="fas ${data.visited ? 'fa-check-circle' : 'fa-circle'}" style="color: ${data.visited ? 'var(--secondary-color)' : '#ccc'};"></i>
-                <span>${tabName}</span>
+                <i class="fas ${info.visitado ? 'fa-check-circle' : 'fa-circle'}" 
+                   style="color: ${info.visitado ? '#88d8b0' : '#ccc'};"></i>
+                <span>${nome}</span>
             </div>
-            <div class="progress-bar">
-                <div class="progress-fill" style="width: ${progressWidth}%"></div>
+            <div style="flex-grow: 1; height: 10px; background: #e0e0e0; border-radius: 5px; overflow: hidden;">
+                <div style="height: 100%; width: ${progresso}%; background: #88d8b0; border-radius: 5px; transition: width 0.5s;"></div>
             </div>
             <div style="text-align: right;">
-                <div>${data.practices} practices</div>
-                ${data.lastVisit ? `<div style="font-size: 0.8rem; color: #666;">Last: ${new Date(data.lastVisit).toLocaleDateString()}</div>` : ''}
+                <div>${info.praticas} práticas</div>
             </div>
         `;
-        
-        progressList.appendChild(progressItem);
+        lista.appendChild(item);
     });
 }
 
-document.getElementById('resetProgress').addEventListener('click', () => {
-    if (confirm('Are you sure you want to reset all your progress?')) {
-        localStorage.removeItem('wisdomProgress');
-        initializeProgress();
+document.getElementById('resetarProgresso').addEventListener('click', () => {
+    if (confirm('Tem certeza que quer resetar todo o progresso?')) {
+        localStorage.removeItem('progressoSabedoria');
+        inicializarProgresso();
     }
 });
 
-// Daily Practice Generator
-const generatePracticeBtn = document.getElementById('generatePractice');
-const practiceResult = document.getElementById('practiceResult');
-const practiceTitle = document.getElementById('practiceTitle');
-const practiceDescription = document.getElementById('practiceDescription');
-const practiceSteps = document.getElementById('practiceSteps');
+// Gerador de Prática Diária
+const gerarBtn = document.getElementById('gerarPratica');
+const resultadoPratica = document.getElementById('resultadoPratica');
+const tituloPratica = document.getElementById('tituloPratica');
+const descricaoPratica = document.getElementById('descricaoPratica');
+const passosPratica = document.getElementById('passosPratica');
 
-generatePracticeBtn.addEventListener('click', () => {
-    const practices = [
-        {
-            title: 'Morning Mindfulness',
-            description: 'Start your day with a 5-minute mindfulness practice to set a calm, intentional tone for the day.',
-            steps: [
-                'Find a quiet spot to sit comfortably',
-                'Close your eyes and take three deep breaths',
-                'Notice the sensations in your body without judgment',
-                'Bring awareness to your thoughts as they come and go',
-                'Gently open your eyes when ready'
-            ]
-        },
-        {
-            title: 'Energy Flow Meditation',
-            description: 'A 10-minute meditation to balance your energy centers and promote vitality.',
-            steps: [
-                'Sit comfortably with your spine straight',
-                'Place your hands on your lower abdomen',
-                'Inhale deeply, imagining energy flowing up from your feet',
-                'Exhale, releasing any tension or blockages',
-                'Move your hands to different energy centers as you visualize light filling them'
-            ]
-        },
-        {
-            title: 'Gratitude Reflection',
-            description: 'Reflect on three things you\'re grateful for today to cultivate positive energy.',
-            steps: [
-                'Find a quiet moment for reflection',
-                'Think of three specific things from today that you appreciate',
-                'Consider why each thing matters to you',
-                'Notice how this reflection makes you feel',
-                'Carry this gratitude with you throughout the day'
-            ]
-        },
-        {
-            title: 'Movement Practice',
-            description: 'Gentle movement to connect mind and body, releasing tension and increasing energy.',
-            steps: [
-                'Stand with feet shoulder-width apart',
-                'Take a few deep breaths to center yourself',
-                'Slowly roll your neck, shoulders, and wrists',
-                'Gently sway from side to side',
-                'End with a moment of stillness, noticing how your body feels'
-            ]
-        },
-        {
-            title: 'Breathing Exercise',
-            description: 'A simple breathing technique to calm your nervous system and increase focus.',
-            steps: [
-                'Sit or lie down comfortably',
-                'Place one hand on your chest, one on your belly',
-                'Inhale slowly through your nose for 4 counts',
-                'Hold your breath for 4 counts',
-                'Exhale slowly through your mouth for 6 counts',
-                'Repeat for 5-10 cycles'
-            ]
-        }
-    ];
-    
-    // Get saved progress to personalize recommendations
-    const savedProgress = localStorage.getItem('wisdomProgress');
-    let progressData = {};
-    let lessVisitedTraditions = [];
-    
-    if (savedProgress) {
-        progressData = JSON.parse(savedProgress);
-        Object.entries(progressData).forEach(([tabId, data]) => {
-            if (data.practices < 3) {
-                lessVisitedTraditions.push(tabId);
-            }
-        });
+const praticas = [
+    {
+        titulo: 'Mindfulness Matinal',
+        descricao: 'Comece o dia com 5 minutos de mindfulness para estabelecer um tom calmo e intencional.',
+        passos: [
+            'Encontre um local tranquilo para sentar',
+            'Feche os olhos e respire profundamente 3 vezes',
+            'Observe as sensações do corpo sem julgamento',
+            'Traga atenção para os pensamentos como eles vêm e vão',
+            'Abra os olhos quando estiver pronto'
+        ]
+    },
+    {
+        titulo: 'Meditação de Energia',
+        descricao: 'Meditação de 10 minutos para equilibrar seus centros de energia.',
+        passos: [
+            'Sente-se confortavelmente com a coluna reta',
+            'Coloque as mãos no abdômen inferior',
+            'Inspire profundamente, imaginando energia subindo dos pés',
+            'Exspire, liberando qualquer tensão',
+            'Mova as mãos para diferentes centros de energia visualizando luz'
+        ]
     }
+];
+
+gerarBtn.addEventListener('click', () => {
+    const aleatoria = praticas[Math.floor(Math.random() * praticas.length)];
     
-    // Select a practice (prioritize less visited traditions if available)
-    let selectedPractice;
-    if (lessVisitedTraditions.length > 0) {
-        // Weight selection toward less visited traditions
-        const weights = lessVisitedTraditions.map(() => 0.7);
-        const otherWeight = 0.3 / (practices.length - lessVisitedTraditions.length);
-        
-        const allWeights = [];
-        practices.forEach((_, i) => {
-            if (lessVisitedTraditions.includes(i)) {
-                allWeights.push(0.7);
-            } else {
-                allWeights.push(otherWeight);
-            }
-        });
-        
-        // Normalize weights
-        const totalWeight = allWeights.reduce((a, b) => a + b, 0);
-        const normalizedWeights = allWeights.map(w => w / totalWeight);
-        
-        // Select based on weights
-        let random = Math.random();
-        let selectedIndex = 0;
-        let cumulativeWeight = 0;
-        
-        for (let i = 0; i < normalizedWeights.length; i++) {
-            cumulativeWeight += normalizedWeights[i];
-            if (random < cumulativeWeight) {
-                selectedIndex = i;
-                break;
-            }
-        }
-        
-        selectedPractice = practices[selectedIndex];
-    } else {
-        // Random selection if all traditions have been visited
-        selectedPractice = practices[Math.floor(Math.random() * practices.length)];
-    }
+    tituloPratica.textContent = aleatoria.titulo;
+    descricaoPratica.textContent = aleatoria.descricao;
     
-    // Display selected practice
-    practiceTitle.textContent = selectedPractice.title;
-    practiceDescription.textContent = selectedPractice.description;
-    
-    practiceSteps.innerHTML = '';
-    selectedPractice.steps.forEach(step => {
-        const stepElement = document.createElement('div');
-        stepElement.style.marginBottom = '10px';
-        stepElement.innerHTML = `<i class="fas fa-chevron-right" style="color: var(--secondary-color); margin-right: 10px;"></i>${step}`;
-        practiceSteps.appendChild(stepElement);
+    passosPratica.innerHTML = '';
+    aleatoria.passos.forEach(passo => {
+        const div = document.createElement('div');
+        div.style.marginBottom = '10px';
+        div.innerHTML = `<i class="fas fa-chevron-right" style="color: #88d8b0; margin-right: 10px;"></i>${passo}`;
+        passosPratica.appendChild(div);
     });
     
-    practiceResult.style.display = 'block';
-}
+    resultadoPratica.style.display = 'block';
+});
 
-// Initialize progress on page load
+// Inicialização
 document.addEventListener('DOMContentLoaded', () => {
-    loadProgress();
+    carregarProgresso();
     
-    // Set initial active tab
-    const activeTab = document.querySelector('.tab-btn.active');
-    if (activeTab) {
-        const tabId = activeTab.getAttribute('data-tab');
-        saveProgress(tabId);
+    const ativa = document.querySelector('.aba-btn.ativa');
+    if (ativa) {
+        const abaId = ativa.getAttribute('data-aba');
+        salvarProgresso(abaId);
     }
 });
